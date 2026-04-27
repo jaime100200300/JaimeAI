@@ -1,4 +1,4 @@
-import ai2_math
+import ai_math
 import datetime
 
 class AI():
@@ -72,37 +72,37 @@ class AI():
                 if tokens[3] == "equation":
                     idx = tokens.index("equation")
                     equation = " ".join(tokens[idx+1:])
-                    answer = ai2_math.math_eval(equation)
+                    answer = ai_math.math_eval(equation)
                     return f"The answer is {answer}"
                 elif tokens[3] == "problem":
                     idx = tokens.index("problem")
                     equation = " ".join(tokens[idx+1:])
-                    answer = ai2_math.math_eval(equation)
+                    answer = ai_math.math_eval(equation)
                     return f"The answer is {answer}"
                 elif tokens[3] == "question":
                     idx = tokens.index("question")
                     equation = " ".join(tokens[idx+1:])
-                    answer = ai2_math.math_eval(equation)
+                    answer = ai_math.math_eval(equation)
                     return f"The answer is {answer}"
 
             # solve math X
             if len(tokens) >= 3 and tokens[1] == "math":
                 idx = tokens.index("math")
                 equation = " ".join(tokens[idx+1:])
-                answer = ai2_math.math_eval(equation)
+                answer = ai_math.math_eval(equation)
                 return f"The answer is {answer}"
             
             # solve the math X
             if len(tokens) >= 4 and tokens[1] == "the" and tokens[2] == "math":
                 idx = tokens.index("math")
                 equation = " ".join(tokens[idx+1:])
-                answer = ai2_math.math_eval(equation)
+                answer = ai_math.math_eval(equation)
                 return f"The answer is {answer}"
 
             # solve X
             if len(tokens) >= 2:
                 equation = " ".join(tokens[1:])
-                answer = ai2_math.math_eval(equation)
+                answer = ai_math.math_eval(equation)
                 return f"The answer is {answer}"
 
             return "Sorry, I can't understand."

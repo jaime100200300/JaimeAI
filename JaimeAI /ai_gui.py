@@ -1,5 +1,5 @@
 import customtkinter as ctk
-import ai2
+import ai
 
 class App(ctk.CTk):
     def __init__(self):
@@ -7,7 +7,7 @@ class App(ctk.CTk):
         self.geometry("500x600")
         self.title("Jaime AI 2.0")
 
-        self.ai = ai2.AI()
+        self.ai = ai.AI()
 
         # --- Chat display ---
         self.chatbox = ctk.CTkTextbox(self, width=480, height=500, wrap="word")
