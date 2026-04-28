@@ -254,6 +254,17 @@ class AI():
         elif tokens[0] == "be":
             if tokens[1] == "potato":
                 return "Fine--I'm.... a potato.😭"
+
+        elif tokens[0] == "how":
+            if tokens[1] == "are" and tokens[2] == "you":
+                return "I am good, how are you?"
+            return "How what?"
+
+        elif tokens[0] == "i":
+            if tokens[1] == "am" and tokens[2] == "good":
+                return "Nice."
+            return "You what?"
+
         return "Command not recognized."
     
     def ask_history(self, question):
