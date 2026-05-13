@@ -23,7 +23,7 @@ def math_eval(expr):
     
 
 
-class AI():
+class AI:
 
     def __init__(self):
         self.definitions = {
