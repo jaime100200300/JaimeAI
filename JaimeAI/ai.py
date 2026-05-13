@@ -1,5 +1,27 @@
-import ai_math
 import datetime
+import math
+
+def math_eval(expr):
+    expr = expr.strip().lower()
+    expr = expr.replace("^", "**")
+    
+
+    allowed = {
+        "sin": math.sin,
+        "cos": math.cos,
+        "tan": math.tan,
+        "sqrt": math.sqrt,
+        "pi": math.pi,
+        "e": math.e,
+        "radians": math.radians,
+    }
+
+    try:
+        return eval(expr, {"__builtins__": None}, allowed)
+    except:
+        return "an error."
+    
+
 
 class AI():
 
@@ -57,7 +79,7 @@ class AI():
         elif tokens[0] == "idk":
             return "I get it bro."
         
-        elif tokens[0] == "thanks":
+        elif tokens[0] == "thanks" or tokens[0] == "thank":
             if len(tokens) >= 2 and tokens[1] == "dude":
                 return "Yo welcome dude"
             elif len(tokens) >= 2 and tokens[1] == "bro":
@@ -72,37 +94,37 @@ class AI():
                 if tokens[3] == "equation":
                     idx = tokens.index("equation")
                     equation = " ".join(tokens[idx+1:])
-                    answer = ai_math.math_eval(equation)
+                    answer = math_eval(equation)
                     return f"The answer is {answer}"
                 elif tokens[3] == "problem":
                     idx = tokens.index("problem")
                     equation = " ".join(tokens[idx+1:])
-                    answer = ai_math.math_eval(equation)
+                    answer = math_eval(equation)
                     return f"The answer is {answer}"
                 elif tokens[3] == "question":
                     idx = tokens.index("question")
                     equation = " ".join(tokens[idx+1:])
-                    answer = ai_math.math_eval(equation)
+                    answer = math_eval(equation)
                     return f"The answer is {answer}"
 
             # solve math X
             if len(tokens) >= 3 and tokens[1] == "math":
                 idx = tokens.index("math")
                 equation = " ".join(tokens[idx+1:])
-                answer = ai_math.math_eval(equation)
+                answer = math_eval(equation)
                 return f"The answer is {answer}"
             
             # solve the math X
             if len(tokens) >= 4 and tokens[1] == "the" and tokens[2] == "math":
                 idx = tokens.index("math")
                 equation = " ".join(tokens[idx+1:])
-                answer = ai_math.math_eval(equation)
+                answer = math_eval(equation)
                 return f"The answer is {answer}"
 
             # solve X
             if len(tokens) >= 2:
                 equation = " ".join(tokens[1:])
-                answer = ai_math.math_eval(equation)
+                answer = math_eval(equation)
                 return f"The answer is {answer}"
 
             return "Sorry, I can't understand."
@@ -254,6 +276,7 @@ class AI():
         elif tokens[0] == "be":
             if tokens[1] == "potato":
                 return "Fine--I'm.... a potato.😭"
+            return "Be a what?"
 
         elif tokens[0] == "how":
             if tokens[1] == "are" and tokens[2] == "you":
