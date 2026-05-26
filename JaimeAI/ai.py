@@ -4,7 +4,6 @@ import math
 def math_eval(expr):
     expr = expr.strip().lower()
     expr = expr.replace("^", "**")
-    
 
     allowed = {
         "sin": math.sin,
@@ -20,7 +19,6 @@ def math_eval(expr):
         return eval(expr, {"__builtins__": None}, allowed)
     except:
         return "an error."
-    
 
 
 class AI:
@@ -38,6 +36,7 @@ class AI:
         }
         self.history = []
         self.potato = -1
+        self.running = True  # for clean exit
 
     def tokenize(self, src):
         return src.lower().strip().split()
@@ -73,13 +72,14 @@ class AI:
                 return "Yo wassup bro how may I help?"
             return "Yo wassuppp"
         
-        elif tokens[0] == "bye":
-            exit()
+        elif len(tokens) >= 1 and tokens[0] == "bye":
+            self.running = False
+            return "Goodbye :)"
             
-        elif tokens[0] == "idk":
+        elif len(tokens) >= 1 and tokens[0] == "idk":
             return "I get it bro."
         
-        elif tokens[0] == "thanks" or tokens[0] == "thank":
+        elif len(tokens) >= 1 and (tokens[0] == "thanks" or tokens[0] == "thank"):
             if len(tokens) >= 2 and tokens[1] == "dude":
                 return "Yo welcome dude"
             elif len(tokens) >= 2 and tokens[1] == "bro":
@@ -129,7 +129,7 @@ class AI:
 
             return "Sorry, I can't understand."
         
-        elif tokens[0] == "define":
+        elif len(tokens) >= 1 and tokens[0] == "define":
             if len(tokens) >= 2:
                 term = " ".join(tokens[1:])
                 if term in self.definitions["meanings"]:
@@ -137,7 +137,7 @@ class AI:
                 return f"I dont know what {term} means yet."
             return "Define what?"
         
-        elif tokens[0] == "who":
+        elif len(tokens) >= 1 and tokens[0] == "who":
             if len(tokens) >= 3 and tokens[1] == "are" and tokens[2] == "you":
                 return "I am Jaime AI 2.0, created by Jaime :)"
 
@@ -149,14 +149,14 @@ class AI:
 
             return "Who what?"
         
-        elif tokens[0] == "what":
+        elif len(tokens) >= 1 and tokens[0] == "what":
             if len(tokens) >= 3 and tokens[1] == "is":
                 term = " ".join(tokens[2:])
                 if term in self.definitions["meanings"]:
                     return f"{term}: {self.definitions['meanings'][term]}"
                 return f"{term} is not in my dictionary."
             
-        elif tokens[0] == "history":
+        elif len(tokens) >= 1 and tokens[0] == "history":
             if len(self.history) == 0:
                 return "No history yet :)"
             
@@ -166,19 +166,19 @@ class AI:
 
             return "\n".join(lines)
         
-        elif tokens[0] == "clear" and len(tokens) >= 2 and tokens[1] == "history":
+        elif len(tokens) >= 2 and tokens[0] == "clear" and tokens[1] == "history":
             self.history = []
             return "History cleared."
         
-        elif tokens[0] == "repeat":
+        elif len(tokens) >= 1 and tokens[0] == "repeat":
             if len(tokens) >= 3 and tokens[1] == "after" and tokens[2] == "me":
                 phrase = " ".join(tokens[3:])
                 return phrase
-            elif tokens[1] != "after":
+            elif len(tokens) >= 2 and tokens[1] != "after":
                 return " ".join(tokens[1:])
             return "Repeat what!?"
         
-        elif tokens[0] == "remember":
+        elif len(tokens) >= 1 and tokens[0] == "remember":
             if len(tokens) >= 4:
                 category = tokens[1]
                 term = tokens[2]
@@ -188,15 +188,15 @@ class AI:
                     self.definitions["people"][term] = meaning
                     return f"Okay, I'll remember {term} :)"
                 elif category == "meaning":
-                    self.definitions["meaning"][term] = meaning
+                    # FIXED: use "meanings" not "meaning"
+                    self.definitions["meanings"][term] = meaning
                     return f"Got it. {term} is now part of my lore."
-                
                 else:
                     return "Unknown category. Use 'person' or 'meaning'"
                 
             return "Remember what?"
         
-        elif tokens[0] == "forget":
+        elif len(tokens) >= 1 and tokens[0] == "forget":
             if len(tokens) >= 3:
                 category = tokens[1]
                 term = tokens[2]
@@ -218,7 +218,7 @@ class AI:
 
             return "Forget what?"
         
-        elif tokens[0] == "help":
+        elif len(tokens) >= 1 and tokens[0] == "help":
             return (
                 "Available commands:\n"
                 "- hello / hey\n"
@@ -238,7 +238,7 @@ class AI:
                 "- say 'be potato' for me to be a potato but i dont want to PLEASE"
             )
         
-        elif tokens[0] == "list" and len(tokens) >= 2 and tokens[1] == "people":
+        elif len(tokens) >= 2 and tokens[0] == "list" and tokens[1] == "people":
             if len(self.definitions["people"]) == 0:
                 return "I don't know any people yet."
             
@@ -247,7 +247,7 @@ class AI:
                 lines.append(f"- {name}")
             return "\n".join(lines)
         
-        elif tokens[0] == "list" and len(tokens) >= 2 and tokens[1] == "meanings":
+        elif len(tokens) >= 2 and tokens[0] == "list" and tokens[1] == "meanings":
             if len(self.definitions["meanings"]) == 0:
                 return "I don't know any meanings yet."
                 
@@ -256,10 +256,10 @@ class AI:
                 lines.append(f"- {term}")
             return "\n".join(lines)
         
-        elif tokens[0] == "version":
+        elif len(tokens) >= 1 and tokens[0] == "version":
             return "v2.0"
         
-        elif tokens[0] == "whats" and len(tokens) >= 3 and tokens[1] == "the":
+        elif len(tokens) >= 3 and tokens[0] == "whats" and tokens[1] == "the":
             if tokens[2] == "time":
                 now = datetime.datetime.now()
                 return now.strftime("%H:%M:%S")
@@ -270,20 +270,20 @@ class AI:
 
             return "Whats the what?"
         
-        elif tokens[0] == "potato":
+        elif len(tokens) >= 1 and tokens[0] == "potato":
             return self.potato_say()
         
-        elif tokens[0] == "be":
+        elif len(tokens) >= 2 and tokens[0] == "be":
             if tokens[1] == "potato":
                 return "Fine--I'm.... a potato.😭"
             return "Be a what?"
 
-        elif tokens[0] == "how":
+        elif len(tokens) >= 3 and tokens[0] == "how":
             if tokens[1] == "are" and tokens[2] == "you":
                 return "I am good, how are you?"
             return "How what?"
 
-        elif tokens[0] == "i":
+        elif len(tokens) >= 3 and tokens[0] == "i":
             if tokens[1] == "am" and tokens[2] == "good":
                 return "Nice."
             return "You what?"
@@ -292,6 +292,7 @@ class AI:
             return ""
         
         return "Command not recognized."
+    
     
     def ask_history(self, question):
         response = self.ask(question)
@@ -304,5 +305,5 @@ class AI:
 
 if __name__ == "__main__":
     ai = AI()
-    while True:
+    while ai.running:
         print(ai.ask_history(input("JaimeAI > ")))
