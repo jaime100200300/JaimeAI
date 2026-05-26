@@ -288,6 +288,9 @@ class AI:
                 return "Nice."
             return "You what?"
 
+        elif question.strip() == "":
+            return ""
+        
         return "Command not recognized."
     
     def ask_history(self, question):
