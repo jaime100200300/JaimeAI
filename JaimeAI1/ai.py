@@ -265,7 +265,7 @@ class AI:
             return "\n".join(lines)
         
         elif len(tokens) >= 1 and tokens[0] == "version":
-            return "v2.0"
+            return "v1.1"
         
         elif len(tokens) >= 3 and tokens[0] == "whats" and tokens[1] == "the":
             if tokens[2] == "time":
