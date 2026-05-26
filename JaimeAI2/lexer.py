@@ -1,6 +1,6 @@
 # lexer.py
 
-from token import Token, TokenType
+from tokens import Token, TokenType
 
 
 def lex(src: str):

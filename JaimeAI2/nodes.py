@@ -18,10 +18,6 @@ class SolveNode(Node):
 
 
 
-@dataclass
-class WhoIsNode(Node):
-    name: str
-
 
 @dataclass
 class BePotatoNode(Node):
