@@ -1,5 +1,4 @@
-import datetime
-import math
+import datetime, math, random
 
 def math_eval(expr):
     expr = expr.strip().lower()
@@ -28,7 +27,7 @@ class AI:
             "meanings": {
                 "python": "A programming language used to maek me :)",
                 "ai": "A system that processes information and generates responses, like me :)",
-                "math": "The study of numbers and patterns",
+                "math": "The study of numbers and patterns, also used to make me :)",
             },
             "people": {
                 "jaime": "The creator of me :)"
@@ -36,6 +35,7 @@ class AI:
         }
         self.history = []
         self.potato = -1
+        self.isPotato = False
         self.running = True  # for clean exit
 
     def tokenize(self, src):
@@ -52,13 +52,21 @@ class AI:
         elif self.potato == 3:
             return "FINAL WARNING! NO POTATO."
         elif self.potato >= 4:
-            return "You know what fine, call me a potato all you want"
+            return "You know what fine, call me a potato " + random.choice([
+                "all you want",
+                "ALL YOU WANT."
+            ])
+
     
     def ask(self, question):
         tokens = self.tokenize(question)
 
+        if len(tokens) == 0:
+            return ""
+
+
         # --- HELLO COMMAND ---
-        if len(tokens) >= 1 and tokens[0] in ("hey", "hello"):
+        elif len(tokens) >= 1 and tokens[0] in ("hey", "hello"):
             if len(tokens) >= 2 and tokens[1] == "dude":
                 return "Hey dude, how can I help?"
             elif len(tokens) >= 2 and tokens[1] == "bro":
@@ -262,7 +270,7 @@ class AI:
         elif len(tokens) >= 3 and tokens[0] == "whats" and tokens[1] == "the":
             if tokens[2] == "time":
                 now = datetime.datetime.now()
-                return now.strftime("%H:%M:%S")
+                return now.strftime(random.choice(["%H:%M:%S", "%H:%M:%S, DUDE!"]))
 
             if tokens[2] == "date":
                 today = datetime.date.today()
@@ -271,12 +279,38 @@ class AI:
             return "Whats the what?"
         
         elif len(tokens) >= 1 and tokens[0] == "potato":
-            return self.potato_say()
+            if self.isPotato:
+                return "DUde--i'm already a potato."
+            else:
+                return self.potato_say()
         
-        elif len(tokens) >= 2 and tokens[0] == "be":
-            if tokens[1] == "potato":
-                return "Fine--I'm.... a potato.😭"
-            return "Be a what?"
+        elif tokens[0] == "be":
+            # "be potato" / "be a potato"
+            if len(tokens) >= 2 and tokens[1] in ("potato", "a"):
+                if "potato" in tokens:
+                    if self.isPotato:
+                        return "Aren't I already a potato?"
+                    else:
+                        self.isPotato = True
+                        return "Fine—I'm a potato 😭"
+            return random.choice(["Be a what?", "Be WHAT?", "Be A WHAT?", "Be a what?"])
+        
+
+        elif tokens[0] == "stop":
+    # stop be potato
+    # stop being potato
+    # stop be a potato
+    # stop being a potato
+            if "potato" in tokens:
+                if not self.isPotato:
+                    return random.choice(["Bruh--I'm not even a potato!", 'Dude you didnt even type "be potato". Bruh?'])
+                else:
+                    self.isPotato = False
+                    self.potato = -1  # reset anger meter
+                    return random.choice(["FINALLY--I'm not a potato anymore.", "Oh. Cool. Not a potato anymore.", "That's great to hear-"])
+            return "Stop what?"
+
+
 
         elif len(tokens) >= 3 and tokens[0] == "how":
             if tokens[1] == "are" and tokens[2] == "you":
@@ -287,9 +321,6 @@ class AI:
             if tokens[1] == "am" and tokens[2] == "good":
                 return "Nice."
             return "You what?"
-
-        elif question.strip() == "":
-            return ""
         
         return "Command not recognized."
     
