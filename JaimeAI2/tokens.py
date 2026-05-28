@@ -10,6 +10,7 @@ class TokenType(Enum):
     PERIOD = auto()
     EXCLAMATION = auto()
     QUESTION = auto()
+    QUOTE = auto()
 
 @dataclass
 class Token:

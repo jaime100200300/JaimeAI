@@ -37,6 +37,13 @@ def lex(src: str):
             i += 1
             continue
 
+        # quote
+        if ch == '"':
+            tokens.append(make_quote(src, i))
+            i = tokens[-1].value_end
+            continue
+
+
         # number
         if ch.isdigit():
             tokens.append(make_number(src, i))
@@ -74,5 +81,25 @@ def make_number(src, i):
         i += 1
     num = src[start:i]
     tok = Token(TokenType.NUM, num)
+    tok.value_end = i
+    return tok
+
+def make_quote(src, i):
+    # starting quote
+    start = i
+    i += 1  # skip the opening "
+
+    value_chars = []
+
+    # read until closing quote OR end of string
+    while i < len(src) and src[i] != '"':
+        value_chars.append(src[i])
+        i += 1
+
+    # if we stopped on a closing quote, skip it
+    if i < len(src) and src[i] == '"':
+        i += 1
+
+    tok = Token(TokenType.QUOTE, "".join(value_chars))
     tok.value_end = i
     return tok
