@@ -22,24 +22,15 @@ class ThinkNode(Node):
 class MakeProjectNode(Node):
     subject: str | None = None
 
-@dataclass
-class AnswerHtmlNode(Node):
-    pass
+
 
 @dataclass
-class AnswerTxtNode(Node):
+class HelloNode(Node):
     pass
 
-@dataclass
-class AnswerMdNode(Node):
-    pass
 
 @dataclass
-class AnswerPythonNode(Node):
-    pass
-
-@dataclass
-class AnswerAnythingNode(Node):
+class MakeWhatNode(Node):
     pass
 
 

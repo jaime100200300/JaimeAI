@@ -1,6 +1,7 @@
 # engine.py
 
 from nodes import *
+from nodesq import *
 import random, os
 from lexer import lex
 from parser import Parser
@@ -57,6 +58,16 @@ class Engine:
                     return self.generate_project(node.subject)
 
                 return "Hm.. Which kind of project?"
+            
+            if isinstance(node, MakeWhatNode):
+                return random.choice([
+                    "Make WHAT bro?",
+                    "Make... what exactly?",
+                    "You said make but like… make WHAT?",
+                    "Make what dude??",
+                    "Make WHAT??? I need details man",
+                ])
+
 
             # UnknownNode
             if isinstance(node, UnknownNode):
@@ -174,6 +185,31 @@ class Engine:
 
                 decision = random.choice(options)
                 return (f"thinking... decided: {decision}, running: {self.run(Parser(lex(decision)).parse())}")
+            
+            if isinstance(node, HelloNode):
+                lines = [
+                    "YOOO 😎🔥",
+                    "ayooo what’s good",
+                    "bro slid into the chat like 👀",
+                    "yo yo yo",
+                    "sup lil gremlin",
+                    "heyyyyy dude",
+                    "YOOOOO USER IN THE BUILDING",
+                    "wassup my chaotic entity",
+                    "yo bro I just spawned",
+                    "HELLO??? yes hi I exist",
+                    "yo dude I’m literally right here",
+                    "bro said hello like an NPC",
+                    "hey hey hey what’s poppin",
+                    "yo I woke up for this",
+                    "sup dude I’m alive again",
+                    "YOOOOOOO WHAT’S UP BROOOO",
+                ]
+
+                return random.choice(lines)
+            
+            
+
 
             lines = [
                 "Unknown node type.",

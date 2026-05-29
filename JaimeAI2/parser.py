@@ -2,6 +2,7 @@
 
 from tokens import TokenType, Token
 from nodes import *
+from nodesq import *
 
 class Parser:
     def __init__(self, tokens):
@@ -15,6 +16,12 @@ class Parser:
 
     def advance(self):
         self.i += 1
+
+    def peek(self):
+        if self.i+1 < len(self.tokens):
+            return self.tokens[self.i+1]
+        return None
+
 
     # -----------------------------
     # TOP-LEVEL MULTI-PARSER
@@ -178,25 +185,44 @@ class Parser:
             self.advance()
             tok = self.current()
 
+            # no more tokens → "Make WHAT?"
+            if tok is None:
+                return MakeWhatNode()
+
             # optional "a"
-            if tok and tok.type == TokenType.WORD and tok.value == "a":
+            if tok.type == TokenType.WORD and tok.value in ("a", "an"):
                 self.advance()
                 tok = self.current()
+                if tok is None:
+                    return MakeWhatNode()
 
             # must be "project"
-            if tok and tok.type == TokenType.WORD and tok.value == "project":
+            if tok.type == TokenType.WORD and tok.value == "project":
                 self.advance()
                 tok = self.current()
 
-                # OPTIONAL SUBJECT
-                # example: "make project html"
+                # subject exists
                 if tok and tok.type == TokenType.WORD:
                     subject = tok.value
                     self.advance()
                     return MakeProjectNode(subject)
 
-                # no subject given
-                return MakeProjectNode(None)
+                # no subject → "Make WHAT?"
+                return MakeWhatNode()
+
+            # user said "make" but not "project"
+            return MakeWhatNode()
+   
+        if tok.type == TokenType.WORD and tok.value in ("hello", "hi", "wassup", "waddup"):
+            self.advance()
+            tok = self.current()
+
+            # skip optional "bro" or "dude"
+            if tok and tok.type == TokenType.WORD and tok.value in ("bro", "dude"):
+                self.advance()
+
+            return HelloNode()
+
 
 
             
