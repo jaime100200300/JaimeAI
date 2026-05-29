@@ -10,23 +10,26 @@ class Node:
     pass
 
 
+@dataclass
+class StopChantingWhoNode(Node):
+    pass
+
+
 # ===== COMMAND NODES =====
 
 @dataclass
 class SolveNode(Node):
     expr: list  # list of tokens or strings
 
-
+@dataclass
+class WhoIsNode(Node):
+    thing: str | None
 
 
 @dataclass
-class BePotatoNode(Node):
-    pass
+class RunCommandNode(Node):
+    command: str | list[str]
 
-
-@dataclass
-class StopPotatoNode(Node):
-    pass
 
 
 @dataclass

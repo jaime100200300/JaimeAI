@@ -52,36 +52,99 @@ class Parser:
         if tok is None:
             return None
 
-        # ---- solve ----
-        if tok.type == TokenType.WORD and tok.value == "solve":
-            self.advance()  # skip "solve"
+        # -----------------------------
+        # RUN COMMAND
+        # -----------------------------
+        if tok.type == TokenType.WORD and tok.value == "run":
+            self.advance()
             tok = self.current()
 
-            # --- QUOTED SOLVE ---
-            if tok is not None and tok.type == TokenType.QUOTE:
+            # optional "the"
+            if tok and tok.type == TokenType.WORD and tok.value == "the":
+                self.advance()
+                tok = self.current()
+
+            # optional "command"
+            if tok and tok.type == TokenType.WORD and tok.value == "command":
+                self.advance()
+                tok = self.current()
+
+            # QUOTED VERSION
+            if tok and tok.type == TokenType.QUOTE:
+                cmd = tok.value
+                self.advance()
+                return RunCommandNode(cmd)
+
+            # UNQUOTED VERSION
+            parts = []
+            while tok and tok.type in (TokenType.WORD, TokenType.NUM, TokenType.QUOTE):
+                parts.append(tok.value)
+                self.advance()
+                tok = self.current()
+
+            return RunCommandNode(" ".join(parts))
+
+        # -----------------------------
+        # SOLVE
+        # -----------------------------
+        if tok.type == TokenType.WORD and tok.value == "solve":
+            self.advance()
+            tok = self.current()
+
+            # QUOTED SOLVE
+            if tok and tok.type == TokenType.QUOTE:
                 expr = tok.value
                 self.advance()
                 return SolveNode([expr])
 
-            # --- UNQUOTED SOLVE ---
+            # UNQUOTED SOLVE
             parts = []
             while tok is not None:
-
-                # STOP CONDITIONS:
                 if tok.type in (TokenType.PERIOD, TokenType.COMMA):
                     break
-
-                # STOP ON "and" OR another "solve"
                 if tok.type == TokenType.WORD and tok.value in ("and", "solve"):
                     break
-
                 parts.append(tok.value)
                 self.advance()
                 tok = self.current()
 
             return SolveNode(parts)
 
-        # fallback: preserve previous full-token text but advance to end
+        # -----------------------------
+        # WHO / WHAT
+        # -----------------------------
+        if tok.type == TokenType.WORD and tok.value in ("who", "what"):
+
+            # count consecutive "who"
+            count = 0
+            while (
+                self.current() is not None
+                and self.current().type == TokenType.WORD
+                and self.current().value == "who"
+            ):
+                count += 1
+                self.advance()
+
+            if count >= 2:
+                return StopChantingWhoNode()
+
+            tok = self.current()
+
+            # who is X
+            if tok and tok.type == TokenType.WORD and tok.value in ("is", "are"):
+                self.advance()
+                tok = self.current()
+                if tok:
+                    thing = tok.value
+                    self.advance()
+                    return WhoIsNode(thing)
+                return WhoIsNode(None)
+
+            return WhoIsNode(None)
+
+        # -----------------------------
+        # FALLBACK
+        # -----------------------------
         text = " ".join(t.value for t in self.tokens)
         self.i = len(self.tokens)
         return UnknownNode(text)

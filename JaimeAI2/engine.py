@@ -1,8 +1,12 @@
 # engine.py
 
 from nodes import *
+import random, os
 
 class Engine:
+
+    def __init__(self):
+        self.dictionary = {}
 
     def runOneNode(self, node):
         # SolveNode
@@ -12,6 +16,45 @@ class Engine:
         # UnknownNode
         if isinstance(node, UnknownNode):
             return f"Unknown: {node.text}"
+        
+        if isinstance(node, WhoIsNode):
+            thing = node.thing
+
+            # no input
+            if thing is None or thing.strip() == "":
+                return random.choice([
+                    "Who what?",
+                    "Who WHAT?",
+                    "Who is what?",
+                    "Who is WHAT?"
+                ])
+
+            # known?
+            if thing in self.dictionary:
+                return f"{thing} is {self.dictionary[thing]}"
+
+            # unknown → funny fallback
+            return f"I don't know who {thing} is."
+        
+        if isinstance(node, StopChantingWhoNode):
+            return "Stop chanting 'WHO WHO WHO', dude."
+        if isinstance(node, RunCommandNode):
+            inner = node.command
+
+            from lexer import lex
+            from parser import Parser
+
+            # Try to interpret internally
+            tokens = lex(inner)
+            ast = Parser(tokens).parse()
+
+            # If parser produced something meaningful → run AI command
+            if not (len(ast) == 1 and isinstance(ast[0], UnknownNode)):
+                return self.run(ast)
+
+            # Otherwise → fallback to OS shell
+            code = os.system('echo ""\n' + inner)
+            return f"FInished running, exit code: {code}"
 
         return "Unknown node type"
 
@@ -32,6 +75,6 @@ class Engine:
 
         try:
             result = eval(expr)
-            return f"the answer is {result}"
+            return f"The answer is {result}"
         except Exception as e:
             return f"Error: {e}"
