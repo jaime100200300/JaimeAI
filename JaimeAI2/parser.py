@@ -51,6 +51,31 @@ class Parser:
         tok = self.current()
         if tok is None:
             return None
+        
+
+        # ANSWER NODES
+        if tok.type == TokenType.WORD:
+
+            if tok.value == "html":
+                self.advance()
+                return AnswerHtmlNode()
+
+            if tok.value == "txt" or tok.value == "text":
+                self.advance()
+                return AnswerTxtNode()
+
+            if tok.value == "md" or tok.value == "markdown":
+                self.advance()
+                return AnswerMdNode()
+
+            if tok.value == "python" or tok.value == "py":
+                self.advance()
+                return AnswerPythonNode()
+            
+            if tok.value == "anything" or tok.value == "idk":
+                self.advance()
+                return AnswerAnythingNode()
+
 
         # -----------------------------
         # RUN COMMAND
@@ -145,6 +170,36 @@ class Parser:
         if tok.type == TokenType.WORD and tok.value == "think":
             self.advance()
             return ThinkNode()
+        
+        # -----------------------------
+        # MAKE PROJECT
+        # -----------------------------
+        if tok.type == TokenType.WORD and tok.value == "make":
+            self.advance()
+            tok = self.current()
+
+            # optional "a"
+            if tok and tok.type == TokenType.WORD and tok.value == "a":
+                self.advance()
+                tok = self.current()
+
+            # must be "project"
+            if tok and tok.type == TokenType.WORD and tok.value == "project":
+                self.advance()
+                tok = self.current()
+
+                # OPTIONAL SUBJECT
+                # example: "make project html"
+                if tok and tok.type == TokenType.WORD:
+                    subject = tok.value
+                    self.advance()
+                    return MakeProjectNode(subject)
+
+                # no subject given
+                return MakeProjectNode(None)
+
+
+            
 
 
         # -----------------------------

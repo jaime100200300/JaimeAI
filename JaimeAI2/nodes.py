@@ -18,6 +18,30 @@ class StopChantingWhoNode(Node):
 class ThinkNode(Node):
     pass
 
+@dataclass
+class MakeProjectNode(Node):
+    subject: str | None = None
+
+@dataclass
+class AnswerHtmlNode(Node):
+    pass
+
+@dataclass
+class AnswerTxtNode(Node):
+    pass
+
+@dataclass
+class AnswerMdNode(Node):
+    pass
+
+@dataclass
+class AnswerPythonNode(Node):
+    pass
+
+@dataclass
+class AnswerAnythingNode(Node):
+    pass
+
 
 
 # ===== COMMAND NODES =====
