@@ -248,10 +248,10 @@ class Engine:
 
             status("Lexing")
             tokens = lex(line)
+            
 
             status("Parsing")
             ast = Parser(tokens).parse()
-
             status("Thinking")
             response = self.run(ast)
 
