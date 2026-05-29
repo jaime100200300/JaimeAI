@@ -141,6 +141,11 @@ class Parser:
                 return WhoIsNode(None)
 
             return WhoIsNode(None)
+        
+        if tok.type == TokenType.WORD and tok.value == "think":
+            self.advance()
+            return ThinkNode()
+
 
         # -----------------------------
         # FALLBACK

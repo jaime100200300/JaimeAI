@@ -2,6 +2,8 @@
 
 from nodes import *
 import random, os
+from lexer import lex
+from parser import Parser
 
 class Engine:
 
@@ -41,9 +43,6 @@ class Engine:
         if isinstance(node, RunCommandNode):
             inner = node.command
 
-            from lexer import lex
-            from parser import Parser
-
             # Try to interpret internally
             tokens = lex(inner)
             ast = Parser(tokens).parse()
@@ -54,7 +53,24 @@ class Engine:
 
             # Otherwise → fallback to OS shell
             code = os.system('echo ""\n' + inner)
-            return f"FInished running, exit code: {code}"
+            return f"FInished running, {'An error, i think.' if code != 0 else 'Runned successfully.'}"
+        
+        if isinstance(node, ThinkNode):
+
+            options = [
+                "solve 1+1",
+                "solve 2+2",
+                "who who who",
+                "run echo hello",
+                "run ls",
+                "solve 3+3",
+                "who is jaime",
+                "solve 5+5"
+            ]
+
+            decision = random.choice(options)
+            return (f"thinking... decided: {decision}, running: {self.run(Parser(lex(decision)).parse())}")
+
 
         return "Unknown node type"
 

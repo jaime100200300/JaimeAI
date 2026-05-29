@@ -14,6 +14,11 @@ class Node:
 class StopChantingWhoNode(Node):
     pass
 
+@dataclass
+class ThinkNode(Node):
+    pass
+
+
 
 # ===== COMMAND NODES =====
 
