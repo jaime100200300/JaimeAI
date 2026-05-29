@@ -17,7 +17,25 @@ class Engine:
 
         # UnknownNode
         if isinstance(node, UnknownNode):
-            return f"Unknown: {node.text}"
+
+            unknown_lines = [
+                "bro what even IS that",
+                "Unknown command detected. I’m scared.",
+                "I have NO idea what '{}' means.",
+                "???",
+                "my brain just blue‑screened at '{}'",
+                "that command is illegal in 47 states",
+                "I refuse to parse '{}'",
+                "I tried. I failed. '{}'",
+                "Unknown. Chaos intensifies.",
+                "idk what '{}' is but ok",
+                "bro you summoned a demon with '{}'",
+                "Unknown: I rolled a nat‑1 on comprehension with '{}'.",
+            ]
+
+            line = random.choice(unknown_lines)
+            return line.format(node.text)
+
         
         if isinstance(node, WhoIsNode):
             thing = node.thing
@@ -33,13 +51,56 @@ class Engine:
 
             # known?
             if thing in self.dictionary:
-                return f"{thing} is {self.dictionary[thing]}"
+
+                lines = [
+                    "{} is {}",
+                    "I think {} means {}",
+                    "pretty sure {} is {}",
+                    "uhhh {} = {} ???",
+                    "the scrollwaves whisper: {} is {}",
+                    "legend says {} is actually {}",
+                    "chaos reports that {} is {}",
+                    "my brain decided {} is {}",
+                ]
+
+                fmt = random.choice(lines)
+                return fmt.format(thing, self.dictionary[thing])
 
             # unknown → funny fallback
-            return f"I don't know who {thing} is."
+
+            lines = [
+                "I don't know who {} is.",
+                "never heard of {} in my life.",
+                "{}?? who dat.",
+                "bro I genuinely have no clue who {} is.",
+                "scrollwaves whisper nothing about {}.",
+                "my brain returns NULL for {}.",
+                "{} is a mystery wrapped in confusion.",
+                "I searched the chaos dimension and found no {}.",
+                "idk who {} is but they sound suspicious.",
+                "??? {} ???",
+            ]
+
+            return random.choice(lines).format(thing)
+
         
         if isinstance(node, StopChantingWhoNode):
-            return "Stop chanting 'WHO WHO WHO', dude."
+
+            lines = [
+                "Stop chanting 'WHO WHO WHO', dude.",
+                "BRO STOP THE WHO‑CHANTING.",
+                "ENOUGH WITH THE WHO WHO WHO.",
+                "my ears cannot handle more WHO WHO WHO.",
+                "WHO WHO WHO detected. shutting it down.",
+                "pls stop chanting WHO WHO WHO.",
+                "bro you sound like an owl on caffeine.",
+                "WHO WHO WHO??? NO. STOP.",
+                "the council forbids more WHO chanting.",
+                "I swear if you WHO WHO WHO again—",
+            ]
+
+            return random.choice(lines)
+
         if isinstance(node, RunCommandNode):
             inner = node.command
 
@@ -53,7 +114,7 @@ class Engine:
 
             # Otherwise → fallback to OS shell
             code = os.system('echo ""\n' + inner)
-            return f"FInished running, {'An error, i think.' if code != 0 else 'Runned successfully.'}"
+            return f"FInished running, {'An error, i think.' if code != 0 else 'runned successfully.'}"
         
         if isinstance(node, ThinkNode):
 
@@ -71,8 +132,21 @@ class Engine:
             decision = random.choice(options)
             return (f"thinking... decided: {decision}, running: {self.run(Parser(lex(decision)).parse())}")
 
+        lines = [
+            "Unknown node type.",
+            "bro this node is from another dimension.",
+            "I looked at this node and my brain said 'nope'.",
+            "this node type is ILLEGAL.",
+            "I cannot comprehend this cursed node.",
+            "unknown node detected. send help.",
+            "what IS this node supposed to be.",
+            "my parser just fainted looking at this node.",
+            "node type: ???",
+            "chaos reports: unknown node.",
+        ]
 
-        return "Unknown node type"
+        return random.choice(lines)
+
 
     def run(self, node):
         # list of nodes → run each
