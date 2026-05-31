@@ -302,13 +302,13 @@ class Engine:
 
             line = line.lower().strip()
 
-            status("Lexing")
+            print("Lexing")
             tokens = lex(line)
             
 
-            status("Parsing")
+            print("Parsing")
             ast = Parser(tokens).parse()
-            status("Thinking")
+            print("Thinking")
             response = self.run(ast)
 
             slow(response)
