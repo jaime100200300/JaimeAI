@@ -13,6 +13,7 @@ class Engine:
     def __init__(self):
         self.dictionary = {}
         self.isAsking = False
+        self.running = False
 
     def generate_project(self, kind):
 
@@ -209,6 +210,7 @@ class Engine:
                 return random.choice(lines)
             
             if isinstance(node, ByeNode):
+                self.running = False
                 return random.choice([
                     "Cya--bye..",
                     "",
@@ -293,22 +295,17 @@ class Engine:
 
 
     def main(self):
-        while True:
-            try:
-                line = input("JaimeAI2 > ")
-            except (EOFError, KeyboardInterrupt):
-                print("\nGoodbye.")
-                break
+        self.running = True
+        while self.running:
+            
+            line = input("JaimeAI2 > ")
+            
 
             line = line.lower().strip()
 
-            print("Lexing")
             tokens = lex(line)
             
-
-            print("Parsing")
             ast = Parser(tokens).parse()
-            print("Thinking")
             response = self.run(ast)
 
             slow(response)

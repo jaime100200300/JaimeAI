@@ -1,6 +1,6 @@
-from engine import Engine
+import engine
 
-engine = Engine()
+engine = engine.Engine()
 
 
 if __name__ == "__main__":
