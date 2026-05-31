@@ -222,6 +222,17 @@ class Parser:
                 self.advance()
 
             return HelloNode()
+        
+
+        if tok.type == TokenType.WORD and tok.value in ("bye", "exit", "cya", "ttyl"):
+            self.advance()
+            tok = self.current()
+
+            # skip optional "bro" or "dude"
+            if tok and tok.type == TokenType.WORD and tok.value in ("bro", "dude"):
+                self.advance()
+
+            return ByeNode()
 
 
 

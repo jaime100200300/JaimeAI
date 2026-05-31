@@ -22,6 +22,10 @@ class ThinkNode(Node):
 class MakeProjectNode(Node):
     subject: str | None = None
 
+@dataclass
+class ByeNode(Node):
+    pass
+
 
 
 @dataclass

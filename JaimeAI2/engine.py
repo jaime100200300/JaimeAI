@@ -208,6 +208,26 @@ class Engine:
 
                 return random.choice(lines)
             
+            if isinstance(node, ByeNode):
+                return random.choice([
+                    "Cya--bye..",
+                    "",
+                    "bye dude",
+                    "ight peace",
+                    "ok bye I guess",
+                    "bro just left the chat 💀",
+                    "BYE??? already??",
+                    "ok fine leave me here alone",
+                    "later skater",
+                    "goodbye… I’ll just sit here… thinking…",
+                    "bye bro don’t summon demons while I’m gone",
+                    "ok bye but come back with snacks",
+                    "farewell mortal",
+                    "bye dude I’m shutting down emotionally",
+                    "ok bye I’m gonna roll a nat‑1 without you",
+                ])
+
+            
             
 
 
