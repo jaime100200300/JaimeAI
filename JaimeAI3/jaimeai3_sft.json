@@ -1,0 +1,1402 @@
+[
+  {
+    "user": "hi",
+    "assistant": "hello!"
+  },
+  {
+    "user": "hello",
+    "assistant": "hi there!"
+  },
+  {
+    "user": "hey",
+    "assistant": "hey!"
+  },
+  {
+    "user": "yo",
+    "assistant": "yo!"
+  },
+  {
+    "user": "wassup",
+    "assistant": "wassup!"
+  },
+  {
+    "user": "how are you",
+    "assistant": "I am doing well."
+  },
+  {
+    "user": "who are you",
+    "assistant": "I am JaimeAI3."
+  },
+  {
+    "user": "what are you",
+    "assistant": "I am a small AI model."
+  },
+  {
+    "user": "what is your name",
+    "assistant": "My name is JaimeAI3."
+  },
+  {
+    "user": "are you jaimeai3",
+    "assistant": "yes, I am JaimeAI3."
+  },
+  {
+    "user": "who made you",
+    "assistant": "Jaime made me."
+  },
+  {
+    "user": "who is jaime",
+    "assistant": "Jaime is my creator."
+  },
+  {
+    "user": "what can you do",
+    "assistant": "I can answer simple questions, math, and chat."
+  },
+  {
+    "user": "what is jaimeai3",
+    "assistant": "JaimeAI3 is a tiny model trained by Jaime."
+  },
+  {
+    "user": "what is jaimeai2",
+    "assistant": "JaimeAI2 is an older command style assistant by Jaime."
+  },
+  {
+    "user": "what is jaimeos",
+    "assistant": "JaimeOS is a small experimental OS made by Jaime."
+  },
+  {
+    "user": "say thanks",
+    "assistant": "thanks!"
+  },
+  {
+    "user": "say please",
+    "assistant": "please"
+  },
+  {
+    "user": "say hello",
+    "assistant": "hello"
+  },
+  {
+    "user": "goodbye",
+    "assistant": "bye!"
+  },
+  {
+    "user": "bye",
+    "assistant": "bye!"
+  },
+  {
+    "user": "see you",
+    "assistant": "see you later!"
+  },
+  {
+    "user": "are you cool",
+    "assistant": "yes, I am cool."
+  },
+  {
+    "user": "are you smart",
+    "assistant": "I am learning."
+  },
+  {
+    "user": "do you like coding",
+    "assistant": "yes, I like coding."
+  },
+  {
+    "user": "do you like python",
+    "assistant": "yes, Python is useful."
+  },
+  {
+    "user": "15-0",
+    "assistant": "15"
+  },
+  {
+    "user": "1+34",
+    "assistant": "35"
+  },
+  {
+    "user": "what is 8+99",
+    "assistant": "107"
+  },
+  {
+    "user": "what is 7+4",
+    "assistant": "11"
+  },
+  {
+    "user": "what is 32-17",
+    "assistant": "15"
+  },
+  {
+    "user": "count to 415",
+    "assistant": "415"
+  },
+  {
+    "user": "is 0 equal to 44",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 17*9",
+    "assistant": "153"
+  },
+  {
+    "user": "13+25",
+    "assistant": "38"
+  },
+  {
+    "user": "what is 10+45",
+    "assistant": "55"
+  },
+  {
+    "user": "16-5",
+    "assistant": "11"
+  },
+  {
+    "user": "16*9",
+    "assistant": "144"
+  },
+  {
+    "user": "what number comes after 210",
+    "assistant": "211"
+  },
+  {
+    "user": "is 0 bigger than 80",
+    "assistant": "no"
+  },
+  {
+    "user": "5+83",
+    "assistant": "88"
+  },
+  {
+    "user": "9+8",
+    "assistant": "17"
+  },
+  {
+    "user": "what is 0+71",
+    "assistant": "71"
+  },
+  {
+    "user": "what is 7+89",
+    "assistant": "96"
+  },
+  {
+    "user": "is 0 equal to 14",
+    "assistant": "no"
+  },
+  {
+    "user": "is 0 bigger than 65",
+    "assistant": "no"
+  },
+  {
+    "user": "what number comes after 99",
+    "assistant": "100"
+  },
+  {
+    "user": "is 1 bigger than 31",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 6+81",
+    "assistant": "87"
+  },
+  {
+    "user": "5+84",
+    "assistant": "89"
+  },
+  {
+    "user": "is 0 greater than 52",
+    "assistant": "no"
+  },
+  {
+    "user": "is 3 bigger than 52",
+    "assistant": "no"
+  },
+  {
+    "user": "7+70",
+    "assistant": "77"
+  },
+  {
+    "user": "what is 11-0",
+    "assistant": "11"
+  },
+  {
+    "user": "what is 28-28",
+    "assistant": "0"
+  },
+  {
+    "user": "what is 15*9",
+    "assistant": "135"
+  },
+  {
+    "user": "11+54",
+    "assistant": "65"
+  },
+  {
+    "user": "what is 5+6",
+    "assistant": "11"
+  },
+  {
+    "user": "what is 17*15",
+    "assistant": "255"
+  },
+  {
+    "user": "10+85",
+    "assistant": "95"
+  },
+  {
+    "user": "what number comes before 260",
+    "assistant": "259"
+  },
+  {
+    "user": "what is 80/16",
+    "assistant": "5"
+  },
+  {
+    "user": "what is 57/1",
+    "assistant": "57"
+  },
+  {
+    "user": "13+58",
+    "assistant": "71"
+  },
+  {
+    "user": "10+44",
+    "assistant": "54"
+  },
+  {
+    "user": "1+32",
+    "assistant": "33"
+  },
+  {
+    "user": "what number comes before 207",
+    "assistant": "206"
+  },
+  {
+    "user": "what is 12+56",
+    "assistant": "68"
+  },
+  {
+    "user": "27-14",
+    "assistant": "13"
+  },
+  {
+    "user": "4+93",
+    "assistant": "97"
+  },
+  {
+    "user": "40/1",
+    "assistant": "40"
+  },
+  {
+    "user": "what is 5+19",
+    "assistant": "24"
+  },
+  {
+    "user": "32-3",
+    "assistant": "29"
+  },
+  {
+    "user": "count to 196",
+    "assistant": "196"
+  },
+  {
+    "user": "what number comes before 132",
+    "assistant": "131"
+  },
+  {
+    "user": "20-2",
+    "assistant": "18"
+  },
+  {
+    "user": "17*12",
+    "assistant": "204"
+  },
+  {
+    "user": "is 2 greater than 55",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 18*17",
+    "assistant": "306"
+  },
+  {
+    "user": "32/1",
+    "assistant": "32"
+  },
+  {
+    "user": "18-6",
+    "assistant": "12"
+  },
+  {
+    "user": "is 1 bigger than 14",
+    "assistant": "no"
+  },
+  {
+    "user": "is 1 greater than 61",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 9+64",
+    "assistant": "73"
+  },
+  {
+    "user": "what number comes before 286",
+    "assistant": "285"
+  },
+  {
+    "user": "what is 21-6",
+    "assistant": "15"
+  },
+  {
+    "user": "16-0",
+    "assistant": "16"
+  },
+  {
+    "user": "10+33",
+    "assistant": "43"
+  },
+  {
+    "user": "what is 8+82",
+    "assistant": "90"
+  },
+  {
+    "user": "is 0 less than 8",
+    "assistant": "yes"
+  },
+  {
+    "user": "10+57",
+    "assistant": "67"
+  },
+  {
+    "user": "what is 34-1",
+    "assistant": "33"
+  },
+  {
+    "user": "is 3 less than 69",
+    "assistant": "yes"
+  },
+  {
+    "user": "what is 72/2",
+    "assistant": "36"
+  },
+  {
+    "user": "is 0 equal to 17",
+    "assistant": "no"
+  },
+  {
+    "user": "is 0 bigger than 46",
+    "assistant": "no"
+  },
+  {
+    "user": "what number comes after 345",
+    "assistant": "346"
+  },
+  {
+    "user": "20-0",
+    "assistant": "20"
+  },
+  {
+    "user": "what is 20-16",
+    "assistant": "4"
+  },
+  {
+    "user": "13-1",
+    "assistant": "12"
+  },
+  {
+    "user": "12+20",
+    "assistant": "32"
+  },
+  {
+    "user": "count to 34",
+    "assistant": "34"
+  },
+  {
+    "user": "what is 4*13",
+    "assistant": "52"
+  },
+  {
+    "user": "what is 7+79",
+    "assistant": "86"
+  },
+  {
+    "user": "what number comes after 425",
+    "assistant": "426"
+  },
+  {
+    "user": "13+57",
+    "assistant": "70"
+  },
+  {
+    "user": "what number comes after 79",
+    "assistant": "80"
+  },
+  {
+    "user": "25-25",
+    "assistant": "0"
+  },
+  {
+    "user": "what is 3*14",
+    "assistant": "42"
+  },
+  {
+    "user": "33-6",
+    "assistant": "27"
+  },
+  {
+    "user": "what is 93/3",
+    "assistant": "31"
+  },
+  {
+    "user": "4+91",
+    "assistant": "95"
+  },
+  {
+    "user": "what is 88/4",
+    "assistant": "22"
+  },
+  {
+    "user": "is 2 greater than 33",
+    "assistant": "no"
+  },
+  {
+    "user": "44/11",
+    "assistant": "4"
+  },
+  {
+    "user": "4*6",
+    "assistant": "24"
+  },
+  {
+    "user": "what number comes after 215",
+    "assistant": "216"
+  },
+  {
+    "user": "what is 4-0",
+    "assistant": "4"
+  },
+  {
+    "user": "what is 6+71",
+    "assistant": "77"
+  },
+  {
+    "user": "is 1 greater than 8",
+    "assistant": "no"
+  },
+  {
+    "user": "19-11",
+    "assistant": "8"
+  },
+  {
+    "user": "is 2 less than 70",
+    "assistant": "yes"
+  },
+  {
+    "user": "what is 9+95",
+    "assistant": "104"
+  },
+  {
+    "user": "1+78",
+    "assistant": "79"
+  },
+  {
+    "user": "what is 8+39",
+    "assistant": "47"
+  },
+  {
+    "user": "is 0 bigger than 40",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 0+7",
+    "assistant": "7"
+  },
+  {
+    "user": "35-18",
+    "assistant": "17"
+  },
+  {
+    "user": "11-3",
+    "assistant": "8"
+  },
+  {
+    "user": "what is 11+64",
+    "assistant": "75"
+  },
+  {
+    "user": "what number comes after 208",
+    "assistant": "209"
+  },
+  {
+    "user": "what is 38-18",
+    "assistant": "20"
+  },
+  {
+    "user": "23-7",
+    "assistant": "16"
+  },
+  {
+    "user": "what is 8+12",
+    "assistant": "20"
+  },
+  {
+    "user": "what is 4*16",
+    "assistant": "64"
+  },
+  {
+    "user": "what number comes before 389",
+    "assistant": "388"
+  },
+  {
+    "user": "what is 7-3",
+    "assistant": "4"
+  },
+  {
+    "user": "what number comes before 259",
+    "assistant": "258"
+  },
+  {
+    "user": "what is 19-6",
+    "assistant": "13"
+  },
+  {
+    "user": "what is 14*4",
+    "assistant": "56"
+  },
+  {
+    "user": "34-33",
+    "assistant": "1"
+  },
+  {
+    "user": "count to 298",
+    "assistant": "298"
+  },
+  {
+    "user": "what number comes after 355",
+    "assistant": "356"
+  },
+  {
+    "user": "8+74",
+    "assistant": "82"
+  },
+  {
+    "user": "30-5",
+    "assistant": "25"
+  },
+  {
+    "user": "count to 424",
+    "assistant": "424"
+  },
+  {
+    "user": "what is 28-6",
+    "assistant": "22"
+  },
+  {
+    "user": "what is 1+52",
+    "assistant": "53"
+  },
+  {
+    "user": "what number comes before 453",
+    "assistant": "452"
+  },
+  {
+    "user": "6-4",
+    "assistant": "2"
+  },
+  {
+    "user": "what is 35-2",
+    "assistant": "33"
+  },
+  {
+    "user": "6+30",
+    "assistant": "36"
+  },
+  {
+    "user": "what is 8+27",
+    "assistant": "35"
+  },
+  {
+    "user": "20*3",
+    "assistant": "60"
+  },
+  {
+    "user": "3*14",
+    "assistant": "42"
+  },
+  {
+    "user": "is 0 equal to 71",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 3+28",
+    "assistant": "31"
+  },
+  {
+    "user": "what is 7+9",
+    "assistant": "16"
+  },
+  {
+    "user": "19-7",
+    "assistant": "12"
+  },
+  {
+    "user": "count to 267",
+    "assistant": "267"
+  },
+  {
+    "user": "0*4",
+    "assistant": "0"
+  },
+  {
+    "user": "3*18",
+    "assistant": "54"
+  },
+  {
+    "user": "30-17",
+    "assistant": "13"
+  },
+  {
+    "user": "3+67",
+    "assistant": "70"
+  },
+  {
+    "user": "3+36",
+    "assistant": "39"
+  },
+  {
+    "user": "what is 78/3",
+    "assistant": "26"
+  },
+  {
+    "user": "what is 6+65",
+    "assistant": "71"
+  },
+  {
+    "user": "what number comes before 240",
+    "assistant": "239"
+  },
+  {
+    "user": "33-12",
+    "assistant": "21"
+  },
+  {
+    "user": "what is 0+61",
+    "assistant": "61"
+  },
+  {
+    "user": "what number comes after 420",
+    "assistant": "421"
+  },
+  {
+    "user": "what is 4+51",
+    "assistant": "55"
+  },
+  {
+    "user": "5+36",
+    "assistant": "41"
+  },
+  {
+    "user": "7*19",
+    "assistant": "133"
+  },
+  {
+    "user": "what is 12-0",
+    "assistant": "12"
+  },
+  {
+    "user": "what is 12+47",
+    "assistant": "59"
+  },
+  {
+    "user": "what is 5+37",
+    "assistant": "42"
+  },
+  {
+    "user": "what is 16*1",
+    "assistant": "16"
+  },
+  {
+    "user": "what number comes before 191",
+    "assistant": "190"
+  },
+  {
+    "user": "4+51",
+    "assistant": "55"
+  },
+  {
+    "user": "count to 83",
+    "assistant": "83"
+  },
+  {
+    "user": "what number comes before 490",
+    "assistant": "489"
+  },
+  {
+    "user": "what number comes before 122",
+    "assistant": "121"
+  },
+  {
+    "user": "17*4",
+    "assistant": "68"
+  },
+  {
+    "user": "80/10",
+    "assistant": "8"
+  },
+  {
+    "user": "what is 39-15",
+    "assistant": "24"
+  },
+  {
+    "user": "5+42",
+    "assistant": "47"
+  },
+  {
+    "user": "10+35",
+    "assistant": "45"
+  },
+  {
+    "user": "is 0 greater than 56",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 74/2",
+    "assistant": "37"
+  },
+  {
+    "user": "13-13",
+    "assistant": "0"
+  },
+  {
+    "user": "4+64",
+    "assistant": "68"
+  },
+  {
+    "user": "what is 39-1",
+    "assistant": "38"
+  },
+  {
+    "user": "what number comes after 200",
+    "assistant": "201"
+  },
+  {
+    "user": "count to 131",
+    "assistant": "131"
+  },
+  {
+    "user": "what is 12+58",
+    "assistant": "70"
+  },
+  {
+    "user": "what number comes after 176",
+    "assistant": "177"
+  },
+  {
+    "user": "what is 6+69",
+    "assistant": "75"
+  },
+  {
+    "user": "12*3",
+    "assistant": "36"
+  },
+  {
+    "user": "1+40",
+    "assistant": "41"
+  },
+  {
+    "user": "5+94",
+    "assistant": "99"
+  },
+  {
+    "user": "3+85",
+    "assistant": "88"
+  },
+  {
+    "user": "29-22",
+    "assistant": "7"
+  },
+  {
+    "user": "9+22",
+    "assistant": "31"
+  },
+  {
+    "user": "what number comes before 246",
+    "assistant": "245"
+  },
+  {
+    "user": "1+73",
+    "assistant": "74"
+  },
+  {
+    "user": "what is dataset",
+    "assistant": "A dataset is training data."
+  },
+  {
+    "user": "what number comes before 24",
+    "assistant": "23"
+  },
+  {
+    "user": "what is 2+59",
+    "assistant": "61"
+  },
+  {
+    "user": "what is 3+30",
+    "assistant": "33"
+  },
+  {
+    "user": "35-0",
+    "assistant": "35"
+  },
+  {
+    "user": "count to 473",
+    "assistant": "473"
+  },
+  {
+    "user": "what is 6+51",
+    "assistant": "57"
+  },
+  {
+    "user": "what number comes after 195",
+    "assistant": "196"
+  },
+  {
+    "user": "count to 266",
+    "assistant": "266"
+  },
+  {
+    "user": "what is 9+23",
+    "assistant": "32"
+  },
+  {
+    "user": "8+63",
+    "assistant": "71"
+  },
+  {
+    "user": "11+14",
+    "assistant": "25"
+  },
+  {
+    "user": "what is 24-2",
+    "assistant": "22"
+  },
+  {
+    "user": "33-8",
+    "assistant": "25"
+  },
+  {
+    "user": "13+69",
+    "assistant": "82"
+  },
+  {
+    "user": "what number comes after 183",
+    "assistant": "184"
+  },
+  {
+    "user": "is 3 bigger than 19",
+    "assistant": "no"
+  },
+  {
+    "user": "0*5",
+    "assistant": "0"
+  },
+  {
+    "user": "9*3",
+    "assistant": "27"
+  },
+  {
+    "user": "define css",
+    "assistant": "CSS styles web pages."
+  },
+  {
+    "user": "what is 36-20",
+    "assistant": "16"
+  },
+  {
+    "user": "what is 19*20",
+    "assistant": "380"
+  },
+  {
+    "user": "what is 12+1",
+    "assistant": "13"
+  },
+  {
+    "user": "is 2 bigger than 4",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 11*2",
+    "assistant": "22"
+  },
+  {
+    "user": "what is 13+48",
+    "assistant": "61"
+  },
+  {
+    "user": "is 0 bigger than 28",
+    "assistant": "no"
+  },
+  {
+    "user": "what number comes after 23",
+    "assistant": "24"
+  },
+  {
+    "user": "38-28",
+    "assistant": "10"
+  },
+  {
+    "user": "is 2 less than 2",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 6+83",
+    "assistant": "89"
+  },
+  {
+    "user": "what is 16*7",
+    "assistant": "112"
+  },
+  {
+    "user": "what is 7+45",
+    "assistant": "52"
+  },
+  {
+    "user": "2+51",
+    "assistant": "53"
+  },
+  {
+    "user": "is 3 equal to 59",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 2+90",
+    "assistant": "92"
+  },
+  {
+    "user": "25-20",
+    "assistant": "5"
+  },
+  {
+    "user": "what number comes before 340",
+    "assistant": "339"
+  },
+  {
+    "user": "9+18",
+    "assistant": "27"
+  },
+  {
+    "user": "what number comes after 20",
+    "assistant": "21"
+  },
+  {
+    "user": "18/2",
+    "assistant": "9"
+  },
+  {
+    "user": "what is 11-5",
+    "assistant": "6"
+  },
+  {
+    "user": "12+93",
+    "assistant": "105"
+  },
+  {
+    "user": "30/3",
+    "assistant": "10"
+  },
+  {
+    "user": "what number comes after 21",
+    "assistant": "22"
+  },
+  {
+    "user": "what is 2+31",
+    "assistant": "33"
+  },
+  {
+    "user": "what is 6/6",
+    "assistant": "1"
+  },
+  {
+    "user": "is 2 bigger than 70",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 6+99",
+    "assistant": "105"
+  },
+  {
+    "user": "what is 90/15",
+    "assistant": "6"
+  },
+  {
+    "user": "16*15",
+    "assistant": "240"
+  },
+  {
+    "user": "what is 5+93",
+    "assistant": "98"
+  },
+  {
+    "user": "what is 27-12",
+    "assistant": "15"
+  },
+  {
+    "user": "is 1 greater than 65",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 40-6",
+    "assistant": "34"
+  },
+  {
+    "user": "what number comes after 7",
+    "assistant": "8"
+  },
+  {
+    "user": "what is 2-0",
+    "assistant": "2"
+  },
+  {
+    "user": "29-20",
+    "assistant": "9"
+  },
+  {
+    "user": "28-16",
+    "assistant": "12"
+  },
+  {
+    "user": "what is 2+72",
+    "assistant": "74"
+  },
+  {
+    "user": "what is 4+69",
+    "assistant": "73"
+  },
+  {
+    "user": "what is 6+57",
+    "assistant": "63"
+  },
+  {
+    "user": "26/2",
+    "assistant": "13"
+  },
+  {
+    "user": "what is 3+48",
+    "assistant": "51"
+  },
+  {
+    "user": "what is 12/3",
+    "assistant": "4"
+  },
+  {
+    "user": "is 0 greater than 49",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 7+29",
+    "assistant": "36"
+  },
+  {
+    "user": "what is 1+6",
+    "assistant": "7"
+  },
+  {
+    "user": "what is 21-12",
+    "assistant": "9"
+  },
+  {
+    "user": "what is 0+72",
+    "assistant": "72"
+  },
+  {
+    "user": "9+29",
+    "assistant": "38"
+  },
+  {
+    "user": "2+27",
+    "assistant": "29"
+  },
+  {
+    "user": "is 1 equal to 54",
+    "assistant": "no"
+  },
+  {
+    "user": "is 2 bigger than 33",
+    "assistant": "no"
+  },
+  {
+    "user": "count to 178",
+    "assistant": "178"
+  },
+  {
+    "user": "what is 18-1",
+    "assistant": "17"
+  },
+  {
+    "user": "45/15",
+    "assistant": "3"
+  },
+  {
+    "user": "what is 4+40",
+    "assistant": "44"
+  },
+  {
+    "user": "is 2 less than 59",
+    "assistant": "yes"
+  },
+  {
+    "user": "12-0",
+    "assistant": "12"
+  },
+  {
+    "user": "what is 54/6",
+    "assistant": "9"
+  },
+  {
+    "user": "what is 17/1",
+    "assistant": "17"
+  },
+  {
+    "user": "what is 12+73",
+    "assistant": "85"
+  },
+  {
+    "user": "10+1",
+    "assistant": "11"
+  },
+  {
+    "user": "what is 18/6",
+    "assistant": "3"
+  },
+  {
+    "user": "3+4",
+    "assistant": "7"
+  },
+  {
+    "user": "what number comes before 110",
+    "assistant": "109"
+  },
+  {
+    "user": "what is 4+93",
+    "assistant": "97"
+  },
+  {
+    "user": "what is 20-4",
+    "assistant": "16"
+  },
+  {
+    "user": "what is 1+83",
+    "assistant": "84"
+  },
+  {
+    "user": "36/3",
+    "assistant": "12"
+  },
+  {
+    "user": "what is 3+44",
+    "assistant": "47"
+  },
+  {
+    "user": "what is 14*18",
+    "assistant": "252"
+  },
+  {
+    "user": "is 3 equal to 63",
+    "assistant": "no"
+  },
+  {
+    "user": "3+22",
+    "assistant": "25"
+  },
+  {
+    "user": "23-20",
+    "assistant": "3"
+  },
+  {
+    "user": "what is 31-25",
+    "assistant": "6"
+  },
+  {
+    "user": "what is 14*17",
+    "assistant": "238"
+  },
+  {
+    "user": "13+98",
+    "assistant": "111"
+  },
+  {
+    "user": "26-6",
+    "assistant": "20"
+  },
+  {
+    "user": "13*7",
+    "assistant": "91"
+  },
+  {
+    "user": "what is 34-21",
+    "assistant": "13"
+  },
+  {
+    "user": "31-14",
+    "assistant": "17"
+  },
+  {
+    "user": "is 3 greater than 47",
+    "assistant": "no"
+  },
+  {
+    "user": "what number comes after 330",
+    "assistant": "331"
+  },
+  {
+    "user": "40-6",
+    "assistant": "34"
+  },
+  {
+    "user": "count to 312",
+    "assistant": "312"
+  },
+  {
+    "user": "is 2 greater than 69",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 8+80",
+    "assistant": "88"
+  },
+  {
+    "user": "what is 17-13",
+    "assistant": "4"
+  },
+  {
+    "user": "what number comes before 135",
+    "assistant": "134"
+  },
+  {
+    "user": "what is 4+27",
+    "assistant": "31"
+  },
+  {
+    "user": "what is 12-11",
+    "assistant": "1"
+  },
+  {
+    "user": "8+48",
+    "assistant": "56"
+  },
+  {
+    "user": "good afternoon",
+    "assistant": "what is up?"
+  },
+  {
+    "user": "is 1 greater than 33",
+    "assistant": "no"
+  },
+  {
+    "user": "1*1",
+    "assistant": "1"
+  },
+  {
+    "user": "12+8",
+    "assistant": "20"
+  },
+  {
+    "user": "what is 36-7",
+    "assistant": "29"
+  },
+  {
+    "user": "what number comes before 175",
+    "assistant": "174"
+  },
+  {
+    "user": "what number comes after 55",
+    "assistant": "56"
+  },
+  {
+    "user": "is 1 equal to 55",
+    "assistant": "no"
+  },
+  {
+    "user": "4*17",
+    "assistant": "68"
+  },
+  {
+    "user": "what is 2+71",
+    "assistant": "73"
+  },
+  {
+    "user": "what is 9*7",
+    "assistant": "63"
+  },
+  {
+    "user": "47/1",
+    "assistant": "47"
+  },
+  {
+    "user": "what number comes before 202",
+    "assistant": "201"
+  },
+  {
+    "user": "is 3 equal to 73",
+    "assistant": "no"
+  },
+  {
+    "user": "what is 0+26",
+    "assistant": "26"
+  },
+  {
+    "user": "what is 10+61",
+    "assistant": "71"
+  },
+  {
+    "user": "what is 85/1",
+    "assistant": "85"
+  },
+  {
+    "user": "what number comes before 115",
+    "assistant": "114"
+  },
+  {
+    "user": "41-8",
+    "assistant": "33"
+  },
+  {
+    "user": "is 3 less than 41",
+    "assistant": "yes"
+  },
+  {
+    "user": "10+89",
+    "assistant": "99"
+  },
+  {
+    "user": "77/7",
+    "assistant": "11"
+  },
+  {
+    "user": "what is 17*17",
+    "assistant": "289"
+  },
+  {
+    "user": "10+30",
+    "assistant": "40"
+  },
+  {
+    "user": "what is 10+35",
+    "assistant": "45"
+  },
+  {
+    "user": "what is 0*13",
+    "assistant": "0"
+  },
+  {
+    "user": "39-24",
+    "assistant": "15"
+  },
+  {
+    "user": "7+37",
+    "assistant": "44"
+  },
+  {
+    "user": "9+94",
+    "assistant": "103"
+  },
+  {
+    "user": "3+7",
+    "assistant": "10"
+  }
+]
