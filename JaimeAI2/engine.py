@@ -2,7 +2,7 @@
 
 from nodes import *
 from nodesq import *
-import random, os
+import random, os, subprocess
 from lexer import lex
 from parser import Parser
 from printing import *
@@ -171,9 +171,20 @@ class Engine:
                 if not (len(ast) == 1 and isinstance(ast[0], UnknownNode)):
                     return self.run(ast)
 
-                # Otherwise → fallback to OS shell
-                code = os.system('echo ""\n' + inner)
-                return f"FInished running, {'An error, i think.' if code != 0 else 'runned successfully.'}"
+                # Otherwise -> fallback to OS shell and show its output
+                result = subprocess.run(
+                    inner,
+                    shell=True,
+                    capture_output=True,
+                    text=True
+                )
+                output = (result.stdout + result.stderr).strip()
+                status = "An error, i think." if result.returncode != 0 else "runned successfully."
+
+                if output:
+                    return f"{output}\nFinished running, {status}"
+
+                return f"Finished running, {status}"
             
             if isinstance(node, ThinkNode):
 
