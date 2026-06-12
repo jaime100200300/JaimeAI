@@ -4,6 +4,10 @@ import time
 
 
 def slow(msg, min_delay=0.01, max_delay=0.1):
+    if "\n" in msg:
+        print(msg)
+        return
+
     cursor_frames = ["|", " "]
     frame_time = 0.16
     last_frame_switch = time.time()
@@ -34,4 +38,3 @@ def slow(msg, min_delay=0.01, max_delay=0.1):
 
     sys.stdout.write("\r" + typed + " \n")
     sys.stdout.flush()
-
