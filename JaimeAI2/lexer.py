@@ -15,7 +15,7 @@ def lex(src: str):
             i += 1
             continue
 
-        # comma
+        # commaa
         if ch == ",":
             tokens.append(Token(TokenType.COMMA, ch))
             i += 1

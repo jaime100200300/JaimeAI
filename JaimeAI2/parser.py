@@ -145,6 +145,9 @@ class Parser:
         # -----------------------------
         # WHO / WHAT
         # -----------------------------
+        # -----------------------------
+        # WHO / WHAT
+        # -----------------------------
         if tok.type == TokenType.WORD and tok.value in ("who", "what"):
 
             # count consecutive "who"
@@ -172,7 +175,9 @@ class Parser:
                     return WhoIsNode(thing)
                 return WhoIsNode(None)
 
+            # if it's "what" without "is", treat as unknown
             return WhoIsNode(None)
+
         
         if tok.type == TokenType.WORD and tok.value == "think":
             self.advance()
@@ -185,9 +190,9 @@ class Parser:
             self.advance()
             tok = self.current()
 
-            # no more tokens → "Make WHAT?"
             if tok is None:
                 return MakeWhatNode()
+
 
             # optional "a"
             if tok.type == TokenType.WORD and tok.value in ("a", "an"):
@@ -207,8 +212,8 @@ class Parser:
                     self.advance()
                     return MakeProjectNode(subject)
 
-                # no subject → "Make WHAT?"
-                return MakeWhatNode()
+                # no subject -> ask which kind of project
+                return MakeProjectNode()
 
             # user said "make" but not "project"
             return MakeWhatNode()

@@ -11,8 +11,11 @@ import projtemplates
 class Engine:
 
     def __init__(self):
-        self.dictionary = {}
+        self.dictionary = {
+            "python": "A prgoramming language used to make me :)"
+        }
         self.isAsking = False
+        self.question = None
         self.running = False
 
     def generate_project(self, kind):
@@ -41,7 +44,7 @@ class Engine:
         full_path = os.path.join(folder, filename)
 
         # 3. Write file
-        with open(full_path, "w") as f:
+        with open(full_path, "w", encoding="utf-8") as f:
             f.write(templates[kind])
 
         return f"Generated a {kind.upper()} project: {full_path}"
@@ -53,11 +56,12 @@ class Engine:
                 return self.run_solve(node)
             
             if isinstance(node, MakeProjectNode):
-                self.isAsking = True
 
                 if node.subject:
                     return self.generate_project(node.subject)
 
+                self.isAsking = True
+                self.question = "project_kind"
                 return "Hm.. Which kind of project?"
             
             if isinstance(node, MakeWhatNode):
@@ -248,29 +252,40 @@ class Engine:
 
             return random.choice(lines)
         else:
-            self.isAsking = False
+            return self.answer_question(node)
+
+    def answer_question(self, node):
+        if self.question == "project_kind":
             if isinstance(node, AnswerHtmlNode):
+                self.clear_question()
                 return self.generate_project("html")
             
             if isinstance(node, AnswerMdNode):
+                self.clear_question()
                 return self.generate_project("md")
             
-            if isinstance(node, AnswerPythonNode):
-                return self.generate_project("python")
-            
             if isinstance(node, AnswerTxtNode):
+                self.clear_question()
                 return self.generate_project("txt")
             
             if isinstance(node, AnswerAnythingNode):
+                self.clear_question()
                 choice = random.choice([
                     "html",
                     "md",
-                    "python",
                     "txt"
                 ])
 
                 return self.generate_project(choice)
-            return "I don't think that answered my question."
+
+            return "I don't think that answered my question. Try html, md, txt, or anything."
+
+        self.clear_question()
+        return "I forgot what I was asking."
+
+    def clear_question(self):
+        self.isAsking = False
+        self.question = None
 
     def run(self, node):
         # list of nodes → run each

@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>JaimeAI2 Mini Monitor</title>
+    <style>
+        body {
+            margin: 0;
+            background: #0b0b12;
+            color: #e5e5e5;
+            font-family: Arial, sans-serif;
+            padding: 1.5rem;
+        }
+
+        .box {
+            background: #14141f;
+            border: 1px solid #222;
+            border-radius: 0.5rem;
+            padding: 1rem 1.2rem;
+            max-width: 500px;
+            margin: auto;
+            box-shadow: 0 0 14px rgba(255,255,255,0.05);
+        }
+
+        h1 {
+            margin: 0 0 0.8rem 0;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #9cf;
+        }
+
+        .stat {
+            margin-bottom: 0.6rem;
+            font-size: 0.9rem;
+        }
+
+        .bar {
+            height: 10px;
+            background: #1d1d2a;
+            border-radius: 999px;
+            overflow: hidden;
+            border: 1px solid #333;
+        }
+
+        .fill {
+            height: 100%;
+            width: 40%;
+            background: linear-gradient(to right, #6b00ff, #bb66ff);
+            animation: wiggle 2s infinite alternate;
+        }
+
+        @keyframes wiggle {
+            from { width: 25%; }
+            to { width: 85%; }
+        }
+
+        .btn {
+            margin-top: 1rem;
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: #1d1d2a;
+            border: 1px solid #333;
+            border-radius: 0.4rem;
+            cursor: pointer;
+            color: #9cf;
+            transition: 0.15s;
+        }
+
+        .btn:hover {
+            background: #26263a;
+            transform: translateY(-2px);
+        }
+
+        .log {
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            color: #aaa;
+            min-height: 1rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class='box'>
+    <h1>jaimeai2 system monitor</h1>
+
+    <div class='stat'>cpu load</div>
+    <div class='bar'><div class='fill'></div></div>
+
+    <div class='stat' style='margin-top:0.8rem;'>status log</div>
+    <div class='log' id='log'>waiting...</div>
+
+    <div class='btn' onclick='updateLog()'>update</div>
+</div>
+
+<script>
+    function updateLog() {
+        const log = document.getElementById('log');
+
+        const msgs = [
+            'running diagnostics...',
+            'checking chaos levels...',
+            'optimizing gremlin cores...',
+            'cleaning memory dust...',
+            'evaluating 7+7...',
+            'scanning for who who who...',
+            'boosting neon output...',
+            'stabilizing engine... maybe'
+        ];
+
+        const pick = msgs[Math.floor(Math.random() * msgs.length)];
+        log.textContent = pick;
+    }
+</script>
+
+</body>
+</html>
+
