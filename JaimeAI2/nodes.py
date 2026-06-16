@@ -19,6 +19,9 @@ class ThinkNode(Node):
     pass
 
 @dataclass
+class WaitSecondsNode(Node):
+    secs: float | int
+@dataclass
 class MakeProjectNode(Node):
     subject: str | None = None
 

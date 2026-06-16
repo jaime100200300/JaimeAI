@@ -220,7 +220,26 @@ class Parser:
 
             # user said "make" but not "project"
             return MakeWhatNode()
-   
+
+        if tok.type == TokenType.WORD and tok.value == "wait":
+            self.advance()
+            tok = self.current()
+
+            # default wait time
+            num = 1.0
+
+            # optional number
+            if tok and tok.type == TokenType.NUM:
+                num = float(tok.value)
+                self.advance()
+                tok = self.current()
+
+            # optional "seconds" or "secs"
+            if tok and tok.type == TokenType.WORD and tok.value in ("seconds", "secs"):
+                self.advance()
+
+            return WaitSecondsNode(num)
+
         if tok.type == TokenType.WORD and tok.value in ("hello", "hi", "wassup", "waddup", "hey"):
             self.advance()
             tok = self.current()

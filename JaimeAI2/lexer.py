@@ -70,14 +70,6 @@ def make_word(src, i):
     return tok
 
 
-def make_number(src, i):
-    start = i
-    while i < len(src) and src[i].isdigit():
-        i += 1
-    num = src[start:i]
-    tok = Token(TokenType.NUM, num)
-    tok.value_end = i
-    return tok
 
 def make_quote(src, i):
     # starting quote
@@ -96,5 +88,21 @@ def make_quote(src, i):
         i += 1
 
     tok = Token(TokenType.QUOTE, "".join(value_chars))
+    tok.value_end = i
+    return tok
+
+def make_number(src, i):
+    start = i
+    dot_count = 0
+
+    while i < len(src) and (src[i].isdigit() or src[i] == "."):
+        if src[i] == ".":
+            if dot_count == 1:
+                break
+            dot_count += 1
+        i += 1
+
+    num = src[start:i]
+    tok = Token(TokenType.NUM, num)
     tok.value_end = i
     return tok

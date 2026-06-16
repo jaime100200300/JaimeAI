@@ -8,6 +8,7 @@ from parser import Parser
 from printing import *
 import projtemplates
 import joiner
+import time
 
 class Engine:
 
@@ -143,6 +144,11 @@ class Engine:
 
                 return random.choice(lines).format(thing)
 
+            if isinstance(node, WaitSecondsNode):
+                time.sleep(node.secs)
+
+                return f"Successfully waited {node.secs} seconds."
+
             
             if isinstance(node, StopChantingWhoNode):
 
@@ -183,7 +189,7 @@ class Engine:
                 status = "An error, i think." if result.returncode != 0 else "runned successfully."
 
                 if output:
-                    return f"{output}\nFinished running, {status}"
+                    return f"\"{output}\"\nFinished running, {status}"
 
                 return f"Finished running, {status}"
             
@@ -201,7 +207,7 @@ class Engine:
                 ]
 
                 decision = random.choice(options)
-                return (f"thinking... decided: {decision}, running....\n\n{self.run(Parser(lex(decision)).parse())}\n\nThinked successfully.")
+                return (f"thinking{"." * random.randint(1, 5)}, decided: {decision}, running{"." * random.randint(1, 5)}\n\nOutput:\n\n{self.run(Parser(lex(decision)).parse())}\n\nThinked successfully.")
             
             if isinstance(node, HelloNode):
                 lines = [
@@ -326,7 +332,6 @@ class Engine:
         while self.running:
             
             line = input("JaimeAI2 > ")
-            
 
             line = line.lower().strip()
 
