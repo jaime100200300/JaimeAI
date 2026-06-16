@@ -218,16 +218,26 @@ class Parser:
             # user said "make" but not "project"
             return MakeWhatNode()
    
-        if tok.type == TokenType.WORD and tok.value in ("hello", "hi", "wassup", "waddup"):
+        if tok.type == TokenType.WORD and tok.value in ("hello", "hi", "wassup", "waddup", "hey"):
             self.advance()
             tok = self.current()
 
-            # skip optional "bro" or "dude"
+            # optional comma
+            if tok and tok.type == TokenType.COMMA:
+                self.advance()
+                tok = self.current()   # <-- FIX
+
+            # optional "bro" or "dude"
             if tok and tok.type == TokenType.WORD and tok.value in ("bro", "dude"):
                 self.advance()
+                tok = self.current()   # <-- FIX
+
+            # optional "!"
+            if tok and tok.type == TokenType.EXCLAMATION:
+                self.advance()
+                tok = self.current()   # <-- FIX
 
             return HelloNode()
-        
 
         if tok.type == TokenType.WORD and tok.value in ("bye", "exit", "cya", "ttyl"):
             self.advance()

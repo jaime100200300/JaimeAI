@@ -27,6 +27,11 @@ def lex(src: str):
             i += 1
             continue
 
+        if ch == "!":
+            tokens.append(Token(TokenType.EXCLAMATION, ch))
+            i += 1
+            continue
+
         # quote
         if ch == '"':
             tokens.append(make_quote(src, i))
