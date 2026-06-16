@@ -201,7 +201,7 @@ class Engine:
                 ]
 
                 decision = random.choice(options)
-                return (f"thinking... decided: {decision}, running: {self.run(Parser(lex(decision)).parse())}")
+                return (f"thinking... decided: {decision}, running....\n\n{self.run(Parser(lex(decision)).parse())}\n\nThinked successfully.")
             
             if isinstance(node, HelloNode):
                 lines = [

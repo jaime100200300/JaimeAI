@@ -150,14 +150,17 @@ class Parser:
         # -----------------------------
         if tok.type == TokenType.WORD and tok.value in ("who", "what"):
 
-            # count consecutive "who"
+            # count consecutive "who", or consume one "what"
             count = 0
-            while (
-                self.current() is not None
-                and self.current().type == TokenType.WORD
-                and self.current().value == "who"
-            ):
-                count += 1
+            if tok.value == "who":
+                while (
+                    self.current() is not None
+                    and self.current().type == TokenType.WORD
+                    and self.current().value == "who"
+                ):
+                    count += 1
+                    self.advance()
+            else:
                 self.advance()
 
             if count >= 2:
@@ -165,7 +168,7 @@ class Parser:
 
             tok = self.current()
 
-            # who is X
+            # who/what is X
             if tok and tok.type == TokenType.WORD and tok.value in ("is", "are"):
                 self.advance()
                 tok = self.current()
