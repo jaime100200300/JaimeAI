@@ -257,6 +257,6 @@ class Parser:
         # -----------------------------
         # FALLBACK
         # -----------------------------
-        text = " ".join(t.value for t in self.tokens)
+        text = " ".join(t.value for t in self.tokens[self.i:])
         self.i = len(self.tokens)
         return UnknownNode(text)
