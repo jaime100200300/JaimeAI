@@ -2,41 +2,23 @@ import random
 import sys
 import time
 
-
 def slow(msg, min_delay=0.01, max_delay=0.1):
-    if "\n" in msg or "\r\n" in msg:
-        sys.stdout.write("\r")   # reset cursor to start of line
-        sys.stdout.flush()
-        print(msg, end="")       # print exactly as-is
-        return
-
-    cursor_frames = ["|", " "]
-    frame_time = 0.16
-    last_frame_switch = time.time()
-    frame = 0
-
-    typed = ""
     i = 0
+    length = len(msg)
 
-    while i < len(msg):
-        now = time.time()
-
-        if now - last_frame_switch >= frame_time:
-            frame = 1 - frame
-            last_frame_switch = now
-
-        chunk_size = random.randint(2, 5)
-        chunk = msg[i:i + chunk_size]
-        typed += chunk
+    while i < length:
+        chunk_size = random.randint(1, 4)
+        chunk = msg[i:i+chunk_size]
         i += chunk_size
 
-        sys.stdout.write("\r" + typed + cursor_frames[frame])
+        sys.stdout.write(chunk)
         sys.stdout.flush()
 
+        # punctuation pause
         if chunk and chunk[-1] in ".!?":
             time.sleep(max_delay * 2.5)
         else:
             time.sleep(random.uniform(min_delay, max_delay))
 
-    sys.stdout.write("\r" + typed + " \n")
+    sys.stdout.write("\n")
     sys.stdout.flush()
