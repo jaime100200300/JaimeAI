@@ -306,7 +306,7 @@ class Engine:
             for n in node:
                 results.append(self.runOneNode(n))
             # join with ", and " but KEEP full sentences
-            return ", and ".join(results)
+            return ", and ".join(results).replace(".,", ",")
 
         # single node
         return self.runOneNode(node)

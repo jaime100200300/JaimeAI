@@ -4,7 +4,7 @@ import time
 
 
 def slow(msg, min_delay=0.01, max_delay=0.1):
-    if "\n" in msg:
+    if "\n" in msg or "\r\n" in msg:
         print(msg)
         return
 
