@@ -145,9 +145,8 @@ class Engine:
                 return random.choice(lines).format(thing)
 
             if isinstance(node, WaitSecondsNode):
-                time.sleep(node.secs)
 
-                return f"Successfully waited {node.secs} seconds."
+                return f"{time.sleep(node.secs)}Successfully waited {node.secs} seconds.".replace('None', '')
 
             
             if isinstance(node, StopChantingWhoNode):
