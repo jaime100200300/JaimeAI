@@ -7,6 +7,7 @@ from lexer import lex
 from parser import Parser
 from printing import *
 import projtemplates
+import joiner
 
 class Engine:
 
@@ -93,7 +94,7 @@ class Engine:
                 ]
 
                 line = random.choice(unknown_lines)
-                return line.format(node.text)
+                return line.format(joiner.joiner(node.text))
 
             
             if isinstance(node, WhoIsNode):
