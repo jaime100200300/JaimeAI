@@ -40,7 +40,7 @@ class Parser:
 
             # skip punctuation and filler words
             while tok is not None and (
-                tok.type in (TokenType.PERIOD, TokenType.COMMA)
+                tok.type in (TokenType.PERIOD, TokenType.COMMA, TokenType.EXCLAMATION)
                 or (tok.type == TokenType.WORD and tok.value == "and")
             ):
                 self.advance()
