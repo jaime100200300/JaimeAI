@@ -5,7 +5,9 @@ import time
 
 def slow(msg, min_delay=0.01, max_delay=0.1):
     if "\n" in msg or "\r\n" in msg:
-        print(msg)
+        sys.stdout.write("\r")   # reset cursor to start of line
+        sys.stdout.flush()
+        print(msg, end="")       # print exactly as-is
         return
 
     cursor_frames = ["|", " "]
