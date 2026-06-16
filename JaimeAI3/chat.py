@@ -18,23 +18,27 @@ def load_model():
 def generate(tok, model, prompt, max_len=64):
     device = next(model.parameters()).device
 
-    # decoder-only prompt: <bos> user <sep>
+    # encode prompt
     text = f"{BOS} {prompt} {SEP}"
     ids = tok.encode(text, add_bos=False, add_eos=False, max_len=None)
+
+    # run model starting from prompt
     x = torch.tensor(ids, dtype=torch.long, device=device).unsqueeze(0)
 
+    # generate
     for _ in range(max_len):
-        logits = model(x)  # [1, T, V]
+        logits = model(x)
         next_id = logits[0, -1].argmax().item()
-
         if next_id == tok.stoi[EOS]:
             break
-
         x = torch.cat([x, torch.tensor([[next_id]], device=device)], dim=1)
-        if x.size(1) >= max_len:
-            break
 
-    return tok.decode(x[0].tolist())
+    # REMOVE the prompt tokens BEFORE decoding
+    generated_only = x[0][len(ids):].tolist()
+
+    # decode ONLY the generated part
+    return tok.decode(generated_only).strip()
+
 
 def main():
     tok, model = load_model()
