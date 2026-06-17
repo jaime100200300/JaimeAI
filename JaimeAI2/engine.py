@@ -37,7 +37,12 @@ class Engine:
             return
 
         folder = "jaimeaiprojects"
+        print("Making folder..")
         os.makedirs(folder, exist_ok=True)
+
+        slow("Generating project: ", end="")
+        if (True if (input("Show code? (y/n) > ") == 'y') else False):
+            slow("\x1b[100;97m\x1b[1;97m" + templates[kind] + "\x1b[0m", min_letters=10, max_letters=20, min_delay=0.005, max_delay=0.01)
 
         filename = f"project_{random.randint(1000,9999)}.{kind}"
         full_path = os.path.join(folder, filename)
