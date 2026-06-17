@@ -7,7 +7,7 @@ engine = engine.Engine()
 def ask(stuff: str):
     parser = Parser(lex(stuff))
     ast = parser.parse()
-    return engine.run(ast)
+    engine.run(ast)
 
 
 if __name__ == "__main__":

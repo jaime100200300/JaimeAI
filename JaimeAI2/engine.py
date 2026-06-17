@@ -5,7 +5,7 @@ from nodesq import *
 import random, os, subprocess
 from lexer import lex
 from parser import Parser
-from printing import *
+from printing import *   # slow()
 import projtemplates
 import joiner
 import time
@@ -26,60 +26,56 @@ class Engine:
 
         kind = kind.lower().strip()
 
-        # allowed types
         templates = {
             "html": projtemplates.htmlrandom,
             "txt": projtemplates.textrandom,
             "md": projtemplates.mdrandom
         }
 
-        # if unknown → error message
         if kind not in templates:
-            return f"Unknown project type '{kind}'. Allowed: html, txt, md."
+            slow(f"Unknown project type '{kind}'. Allowed: html, txt, md.")
+            return
 
-        # 1. Create the directory if it doesn't exist
         folder = "jaimeaiprojects"
         os.makedirs(folder, exist_ok=True)
 
-        # 2. Generate filename
         filename = f"project_{random.randint(1000,9999)}.{kind}"
         full_path = os.path.join(folder, filename)
 
-        # 3. Write file
         with open(full_path, "w", encoding="utf-8") as f:
             f.write(templates[kind])
 
-        return f"Generated a {kind.upper()} project: {full_path}"
+        slow(f"Generated a {kind.upper()} project: {full_path}")
 
     def runOneNode(self, node):
         if not self.isAsking:
-            # SolveNode
-            if isinstance(node, SolveNode):
-                return self.run_solve(node)
-            
-            if isinstance(node, MakeProjectNode):
 
+            if isinstance(node, SolveNode):
+                slow(self.run_solve(node))
+                return
+
+            if isinstance(node, MakeProjectNode):
                 if node.subject:
-                    return self.generate_project(node.subject)
+                    self.generate_project(node.subject)
+                    return
 
                 self.isAsking = True
                 self.question = "project_kind"
-                return "Hm.. Which kind of project?"
-            
+                slow("Hm.. Which kind of project?")
+                return
+
             if isinstance(node, MakeWhatNode):
-                return random.choice([
+                slow(random.choice([
                     "Make WHAT bro?",
                     "Make... what exactly?",
                     "You said make but like… make WHAT?",
                     "Make what dude??",
                     "Make WHAT??? I need details man",
-                ])
+                ]))
+                return
 
-
-            # UnknownNode
             if isinstance(node, UnknownNode):
-
-                unknown_lines = [
+                line = random.choice([
                     "bro what even IS that",
                     "Unknown command detected. I’m scared.",
                     "I have NO idea what '{}' means.",
@@ -92,28 +88,24 @@ class Engine:
                     "idk what '{}' is but ok",
                     "bro you summoned a demon with '{}'",
                     "Unknown: I rolled a nat‑1 on comprehension with '{}'.",
-                ]
+                ]).format(joiner.joiner(node.text))
+                slow(line)
+                return
 
-                line = random.choice(unknown_lines)
-                return line.format(joiner.joiner(node.text))
-
-            
             if isinstance(node, WhoIsNode):
                 thing = node.thing
 
-                # no input
-                if thing is None or thing.strip() == "":
-                    return random.choice([
+                if not thing or thing.strip() == "":
+                    slow(random.choice([
                         "Who what?",
                         "Who WHAT?",
                         "Who is what?",
                         "Who is WHAT?"
-                    ])
+                    ]))
+                    return
 
-                # known?
                 if thing in self.dictionary:
-
-                    lines = [
+                    fmt = random.choice([
                         "{} is {}",
                         "I think {} means {}",
                         "pretty sure {} is {}",
@@ -122,14 +114,11 @@ class Engine:
                         "legend says {} is actually {}",
                         "chaos reports that {} is {}",
                         "my brain decided {} is {}",
-                    ]
+                    ])
+                    slow(fmt.format(thing, self.dictionary[thing]))
+                    return
 
-                    fmt = random.choice(lines)
-                    return fmt.format(thing, self.dictionary[thing])
-
-                # unknown → funny fallback
-
-                lines = [
+                slow(random.choice([
                     "I don't know who {} is.",
                     "never heard of {} in my life.",
                     "{}?? who dat.",
@@ -140,18 +129,16 @@ class Engine:
                     "I searched the chaos dimension and found no {}.",
                     "idk who {} is but they sound suspicious.",
                     "??? {} ???",
-                ]
-
-                return random.choice(lines).format(thing)
+                ]).format(thing))
+                return
 
             if isinstance(node, WaitSecondsNode):
+                time.sleep(node.secs)
+                slow(f"Successfully waited {node.secs} seconds.")
+                return
 
-                return f"{time.sleep(node.secs)}Successfully waited {node.secs} seconds.".replace('None', '')
-
-            
             if isinstance(node, StopChantingWhoNode):
-
-                lines = [
+                slow(random.choice([
                     "Stop chanting 'WHO WHO WHO', dude.",
                     "BRO STOP THE WHO‑CHANTING.",
                     "ENOUGH WITH THE WHO WHO WHO.",
@@ -162,22 +149,19 @@ class Engine:
                     "WHO WHO WHO??? NO. STOP.",
                     "the council forbids more WHO chanting.",
                     "I swear if you WHO WHO WHO again—",
-                ]
-
-                return random.choice(lines)
+                ]))
+                return
 
             if isinstance(node, RunCommandNode):
                 inner = node.command
 
-                # Try to interpret internally
                 tokens = lex(inner)
                 ast = Parser(tokens).parse()
 
-                # If parser produced something meaningful → run AI command
                 if not (len(ast) == 1 and isinstance(ast[0], UnknownNode)):
-                    return self.run(ast)
+                    self.run(ast)
+                    return
 
-                # Otherwise -> fallback to OS shell and show its output
                 result = subprocess.run(
                     inner,
                     shell=True,
@@ -188,13 +172,13 @@ class Engine:
                 status = "An error, i think." if result.returncode != 0 else "runned successfully."
 
                 if output:
-                    return f"\"{output}\"\nFinished running, {status}"
+                    slow(f"\"{output}\"\nFinished running, {status}")
+                else:
+                    slow(f"Finished running, {status}")
+                return
 
-                return f"Finished running, {status}"
-            
             if isinstance(node, ThinkNode):
-
-                options = [
+                decision = random.choice([
                     "solve 1+1",
                     "solve 2+2",
                     "who who who",
@@ -203,13 +187,14 @@ class Engine:
                     "solve 3+3",
                     "who is jaime",
                     "solve 5+5"
-                ]
+                ])
+                slow(f"thinking..., decided: {decision}, running...\n")
+                self.run(Parser(lex(decision)).parse())
+                slow("\nThinked successfully.")
+                return
 
-                decision = random.choice(options)
-                return (f"thinking{"." * random.randint(1, 5)}, decided: {decision}, running{"." * random.randint(1, 5)}\n\nOutput:\n\n{self.run(Parser(lex(decision)).parse())}\n\nThinked successfully.")
-            
             if isinstance(node, HelloNode):
-                lines = [
+                slow(random.choice([
                     "YOOO 😎🔥",
                     "ayooo what’s good",
                     "bro slid into the chat like 👀",
@@ -226,13 +211,12 @@ class Engine:
                     "yo I woke up for this",
                     "sup dude I’m alive again",
                     "YOOOOOOO WHAT’S UP BROOOO",
-                ]
+                ]))
+                return
 
-                return random.choice(lines)
-            
             if isinstance(node, ByeNode):
                 self.running = False
-                return random.choice([
+                slow(random.choice([
                     "Cya--bye..",
                     "",
                     "bye dude",
@@ -248,13 +232,10 @@ class Engine:
                     "farewell mortal",
                     "bye dude I’m shutting down emotionally",
                     "ok bye I’m gonna roll a nat‑1 without you",
-                ])
+                ]))
+                return
 
-            
-            
-
-
-            lines = [
+            slow(random.choice([
                 "Unknown node type.",
                 "bro this node is from another dimension.",
                 "I looked at this node and my brain said 'nope'.",
@@ -265,78 +246,62 @@ class Engine:
                 "my parser just fainted looking at this node.",
                 "node type: ???",
                 "chaos reports: unknown node.",
-            ]
+            ]))
+            return
 
-            return random.choice(lines)
         else:
-            return self.answer_question(node)
+            self.answer_question(node)
 
     def answer_question(self, node):
         if self.question == "project_kind":
             if isinstance(node, AnswerHtmlNode):
                 self.clear_question()
-                return self.generate_project("html")
+                self.generate_project("html")
+                return
             
             if isinstance(node, AnswerMdNode):
                 self.clear_question()
-                return self.generate_project("md")
+                self.generate_project("md")
+                return
             
             if isinstance(node, AnswerTxtNode):
                 self.clear_question()
-                return self.generate_project("txt")
+                self.generate_project("txt")
+                return
             
             if isinstance(node, AnswerAnythingNode):
                 self.clear_question()
-                choice = random.choice([
-                    "html",
-                    "md",
-                    "txt"
-                ])
+                self.generate_project(random.choice(["html", "md", "txt"]))
+                return
 
-                return self.generate_project(choice)
-
-            return "I don't think that answered my question. Try html, md, txt, or anything."
+            slow("I don't think that answered my question. Try html, md, txt, or anything.")
+            return
 
         self.clear_question()
-        return "I forgot what I was asking."
+        slow("I forgot what I was asking.")
 
     def clear_question(self):
         self.isAsking = False
         self.question = None
 
     def run(self, node):
-        # list of nodes → run each
         if isinstance(node, list):
-            results = []
             for n in node:
-                results.append(self.runOneNode(n))
-            # join with ", and " but KEEP full sentences
-            return ", and ".join(results).replace(".,", ",")
-
-        # single node
-        return self.runOneNode(node)
+                self.runOneNode(n)
+            return
+        self.runOneNode(node)
 
     def run_solve(self, node: SolveNode):
         expr = "".join(node.expr)
-
         try:
-            result = eval(expr)
-            return f"The answer is {result}"
+            return f"The answer is {eval(expr)}"
         except Exception as e:
             return f"Error: {e}"
-
 
     def main(self):
         self.running = True
         while self.running:
-            
             line = input("JaimeAI2 > ")
-
-            line = line.lower().strip()
-
-            tokens = lex(line)
-            
+            tokens = lex(line.lower().strip())
             ast = Parser(tokens).parse()
-            response = self.run(ast)
-
-            slow(response)
+            self.run(ast)
