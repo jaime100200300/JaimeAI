@@ -60,28 +60,7 @@ class Parser:
             return None
         
 
-        # ANSWER NODES
-        if tok.type == TokenType.WORD:
 
-            if tok.value == "html":
-                self.advance()
-                return AnswerHtmlNode()
-
-            if tok.value == "txt" or tok.value == "text":
-                self.advance()
-                return AnswerTxtNode()
-
-            if tok.value == "md" or tok.value == "markdown":
-                self.advance()
-                return AnswerMdNode()
-
-            if tok.value == "python" or tok.value == "py":
-                self.advance()
-                return AnswerPythonNode()
-            
-            if tok.value == "anything" or tok.value == "idk":
-                self.advance()
-                return AnswerAnythingNode()
 
 
         # -----------------------------
@@ -270,6 +249,12 @@ class Parser:
                 self.advance()
 
             return ByeNode()
+
+        # If the entire input is exactly ONE WORD token
+        if len(self.tokens) == 1 and tok.type == TokenType.WORD:
+            word = tok.value      # save it BEFORE advancing
+            self.advance()        # consume the word so the parser can finish
+            return OneWordNode(word)
 
 
 

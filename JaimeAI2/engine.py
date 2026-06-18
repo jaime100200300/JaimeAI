@@ -9,6 +9,7 @@ from printing import *   # slow()
 import projtemplates
 import joiner
 import time
+from numst import number_to_ordinal_word
 
 class Engine:
 
@@ -29,11 +30,12 @@ class Engine:
         templates = {
             "html": projtemplates.htmlrandom,
             "txt": projtemplates.textrandom,
-            "md": projtemplates.mdrandom
+            "md": projtemplates.mdrandom,
+            "python": projtemplates.pythonrandom
         }
 
         if kind not in templates:
-            slow(f"Unknown project type '{kind}'. Allowed: html, txt, md.")
+            slow(f"Unknown project type '{kind}'. Allowed: html, txt, md, and python.")
             return
 
         folder = "jaimeaiprojects"
@@ -44,7 +46,7 @@ class Engine:
         if (True if (input("Show code? (y/n) > ") == 'y') else False):
             slow("\x1b[100;97m\x1b[1;97m" + templates[kind] + "\x1b[0m", min_letters=10, max_letters=20, min_delay=0.005, max_delay=0.01)
 
-        filename = f"project_{random.randint(1000,9999)}.{kind}"
+        filename = f"project_{random.randint(1000,9999)}.{'py' if kind == "python" else kind}"
         full_path = os.path.join(folder, filename)
 
         with open(full_path, "w", encoding="utf-8") as f:
@@ -52,12 +54,14 @@ class Engine:
 
         slow(f"Generated a {kind.upper()} project: {full_path}")
 
-    def runOneNode(self, node):
+    def runOneNode(self, node, idx):
+        index, total = idx
         if not self.isAsking:
 
             if isinstance(node, SolveNode):
-                slow(self.run_solve(node))
+                slow(self.run_solve(node, index, total))
                 return
+
 
             if isinstance(node, MakeProjectNode):
                 if node.subject:
@@ -70,14 +74,10 @@ class Engine:
                 return
 
             if isinstance(node, MakeWhatNode):
-                slow(random.choice([
-                    "Make WHAT bro?",
-                    "Make... what exactly?",
-                    "You said make but like… make WHAT?",
-                    "Make what dude??",
-                    "Make WHAT??? I need details man",
-                ]))
+                self.handle_makewhat(index, total)
                 return
+
+
 
             if isinstance(node, UnknownNode):
                 line = random.choice([
@@ -259,24 +259,9 @@ class Engine:
 
     def answer_question(self, node):
         if self.question == "project_kind":
-            if isinstance(node, AnswerHtmlNode):
+            if isinstance(node, OneWordNode):
                 self.clear_question()
-                self.generate_project("html")
-                return
-            
-            if isinstance(node, AnswerMdNode):
-                self.clear_question()
-                self.generate_project("md")
-                return
-            
-            if isinstance(node, AnswerTxtNode):
-                self.clear_question()
-                self.generate_project("txt")
-                return
-            
-            if isinstance(node, AnswerAnythingNode):
-                self.clear_question()
-                self.generate_project(random.choice(["html", "md", "txt"]))
+                self.generate_project(node.word)
                 return
 
             slow("I don't think that answered my question. Try html, md, txt, or anything.")
@@ -291,17 +276,53 @@ class Engine:
 
     def run(self, node):
         if isinstance(node, list):
-            for n in node:
-                self.runOneNode(n)
-            return
-        self.runOneNode(node)
 
-    def run_solve(self, node: SolveNode):
+            total = len(node)
+            index = 0
+
+            for n in node:
+                index += 1
+                self.runOneNode(n, (index, total))
+
+            return
+
+        self.runOneNode(node, (1, 1))
+
+
+    def run_solve(self, node: SolveNode, index, total):
         expr = "".join(node.expr)
         try:
-            return f"The answer is {eval(expr)}"
+            if total == 1:
+                return f"The answer is {eval(expr)}"
+            else:
+                return f"The {number_to_ordinal_word(index)} answer is {eval(expr)}"
         except Exception as e:
             return f"Error: {e}"
+
+
+    def handle_makewhat(self, index, total):
+        if total == 1:
+            # Only one make in the whole input
+            slow(random.choice([
+                "Make WHAT bro?",
+                "Make... what exactly?",
+                "You said make but like… make WHAT?",
+                "Make what dude??",
+                "Make WHAT??? I need details man",
+            ]))
+            return
+
+        # Multiple makes in the same input
+        if index == 1:
+            slow("Make WHAT bro?")
+        elif index == 2:
+            slow("Wow. Another 'make' again?")
+        elif index == 3:
+            slow("BRO STOP MAKING THINGS")
+        else:
+            slow(f"Bro this is the {index}th make. Seek help.")
+
+
 
     def main(self):
         self.running = True

@@ -643,3 +643,97 @@ jaime is a chaos dev.
 
 """
 ])
+
+pythonrandom = random.choice([
+    """# Chaos Insult Generator
+    import random
+
+    insults = [
+        "bro your code has 3 braincells",
+        "you debug like a confused potato",
+        "skill issue detected",
+        "your syntax is crying",
+        "you summoned a bug demon",
+        "Yo head lookin like a deformed tomato who been left on la highway for 3 years, ran over by 34 cars, and brutally stepped on 45 times.",
+        "bro your code running on 2fps",
+        "you type like your keyboard is allergic to you",
+        "your indentation is a war crime",
+        "your variables look like they were named by a confused squirrel",
+        "your logic flow fell down the stairs",
+        "your code smells like expired spaghetti",
+        "you debug like you're guessing lottery numbers",
+        "your functions have commitment issues",
+        "your syntax ran away and filed a restraining order",
+        "your code is held together by hopes and prayers",
+        "you program like a microwave with brain damage",
+        "your IDE is begging you to stop",
+        "your code is so cursed even demons said 'nah'",
+        "your loops loop back to shame",
+        "your code has more issues than a soap opera",
+
+    ]
+
+    print(random.choice(insults))
+    """,
+    """# dice_roller
+import random
+print("You rolled:", random.randint(1, 6))
+""",
+"""# coin_flip
+import random
+print(random.choice(["Heads", "Tails"]))
+""",
+"""# password_gen
+import random, string
+chars = string.ascii_letters + string.digits
+print("Password:", "".join(random.choice(chars) for _ in range(12)))
+""",
+"""# mini_calc
+expr = input("Enter math: ")
+print("Result:", eval(expr))
+""",
+"""# random_color
+import random
+print("RGB:", random.randint(0,255), random.randint(0,255), random.randint(0,255))
+""",
+"""# silly_bot
+import random
+responses = [
+    "bro what",
+    "nahhh try again",
+    "skill issue",
+    "I am a toaster",
+    "processing... nope"
+]
+while True:
+    input("> ")
+    print(random.choice(responses))
+""",
+"""# guess_game.py
+import random
+secret = random.randint(1, 20)
+guess = int(input("Guess 1-20: "))
+if guess == secret:
+    print("YOU WIN 🎉")
+else:
+    print("Nope, it was", secret)
+""",
+"""# ascii_art
+arts = [
+    "(•_•)",
+    "( •_•)>⌐■-■",
+    "(⌐■_■)",
+    "ʕ•ᴥ•ʔ",
+    "(╯°□°）╯︵ ┻━┻"
+]
+import random
+print(random.choice(arts))
+""",
+"""# hacker_typer.py
+import time, random
+chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+for _ in range(200):
+    print(random.choice(chars), end="", flush=True)
+    time.sleep(0.02)
+"""
+])

@@ -1,0 +1,12 @@
+# silly_bot
+import random
+responses = [
+    "bro what",
+    "nahhh try again",
+    "skill issue",
+    "I am a toaster",
+    "processing... nope"
+]
+while True:
+    input("> ")
+    print(random.choice(responses))

@@ -1,0 +1,156 @@
+
+
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>JaimeAI2 Retro Panel</title>
+    <style>
+        body {
+            margin: 0;
+            background: #050510;
+            font-family: Arial, sans-serif;
+            color: #e0e0ff;
+        }
+
+        header {
+            padding: 1rem 2rem;
+            background: linear-gradient(to right, #120022, #220044);
+            border-bottom: 2px solid #330066;
+            text-shadow: 0 0 6px #a020f0;
+        }
+
+        .title {
+            font-size: 1.4rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .container {
+            padding: 2rem;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .panel {
+            background: #0d0d1a;
+            border: 1px solid #2a0055;
+            border-radius: 0.6rem;
+            padding: 1.2rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px rgba(162, 0, 255, 0.25);
+        }
+
+        .panel h2 {
+            margin-top: 0;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: #c080ff;
+        }
+
+        .meter {
+            height: 14px;
+            background: #1a1a2a;
+            border-radius: 999px;
+            overflow: hidden;
+            margin-top: 0.5rem;
+            border: 1px solid #330066;
+        }
+
+        .meter-fill {
+            height: 100%;
+            width: 40%;
+            background: linear-gradient(to right, #ff00ff, #ff66ff);
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from { width: 30%; }
+            to { width: 80%; }
+        }
+
+        .terminal {
+            background: #0a0a14;
+            border: 1px solid #330066;
+            border-radius: 0.4rem;
+            padding: 0.8rem;
+            font-family: monospace;
+            font-size: 0.9rem;
+            line-height: 1.4;
+            height: 180px;
+            overflow-y: auto;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.4rem 0.8rem;
+            background: #220044;
+            border: 1px solid #330066;
+            border-radius: 0.4rem;
+            color: #e0b0ff;
+            cursor: pointer;
+            margin-top: 0.6rem;
+            transition: 0.15s;
+        }
+
+        .btn:hover {
+            background: #330066;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class='title'>JaimeAI2 Retro Panel</div>
+</header>
+
+<div class='container'>
+
+    <div class='panel'>
+        <h2>system load</h2>
+        <div class='meter'>
+            <div class='meter-fill'></div>
+        </div>
+        <p style='margin-top:0.6rem;color:#aaa;'>chaos engine warming up...</p>
+    </div>
+
+    <div class='panel'>
+        <h2>terminal</h2>
+        <div class='terminal' id='term'>
+            boot sequence initiated...<br>
+            loading retro modules...<br>
+            ready.<br><br>
+        </div>
+        <div class='btn' onclick='runCommand()'>run random command</div>
+    </div>
+
+</div>
+
+<script>
+    function runCommand() {
+        const term = document.getElementById('term');
+
+        const lines = [
+            'executing neon pulse...',
+            'scanning memory banks...',
+            'compiling chaos shaders...',
+            'rendering retro grid...',
+            'checking who who who levels...',
+            'spawning virtual project...',
+            'evaluating 3+3...',
+            'activating purple mode...'
+        ];
+
+        const pick = lines[Math.floor(Math.random() * lines.length)];
+
+        term.innerHTML += '> ' + pick + '<br>';
+        term.scrollTop = term.scrollHeight;
+    }
+</script>
+
+</body>
+</html>
+
+
