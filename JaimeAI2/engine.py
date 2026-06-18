@@ -163,9 +163,22 @@ class Engine:
                 tokens = lex(inner)
                 ast = Parser(tokens).parse()
 
-                if not (len(ast) == 1 and isinstance(ast[0], UnknownNode)):
+                # If the inner command is a valid JaimeAI command
+                if not (len(ast) == 1 and isinstance(ast[0], OneWordNode)):
                     self.run(ast)
                     return
+
+                # Otherwise treat it as a shell command
+                result = subprocess.run(inner, shell=True, capture_output=True, text=True)
+                output = (result.stdout + result.stderr).strip()
+                status = "An error, i think." if result.returncode != 0 else "runned successfully."
+
+                if output:
+                    slow(f"\"{output}\"\nFinished running, {status}")
+                else:
+                    slow(f"Finished running, {status}")
+                return
+
 
                 result = subprocess.run(
                     inner,
