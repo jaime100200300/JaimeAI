@@ -43,7 +43,7 @@ class Engine:
         os.makedirs(folder, exist_ok=True)
 
         slow("Generating project: ", end="")
-        if (True if (input("Show code? (y/n) > ") == 'y') else False):
+        if input("Show code? (y/n) > ") == 'y':
             slow("\x1b[100;97m\x1b[1;97m" + templates[kind] + "\x1b[0m", min_letters=10, max_letters=20, min_delay=0.005, max_delay=0.01)
 
         filename = f"project_{random.randint(1000,9999)}.{'py' if kind == "python" else kind}"
@@ -162,7 +162,6 @@ class Engine:
 
                 tokens = lex(inner)
                 ast = Parser(tokens).parse()
-
                 # If the inner command is a REAL JaimeAI command (SolveNode, MakeNode, etc.)
                 if len(ast) == 1 and not isinstance(ast[0], (UnknownNode, OneWordNode)):
                     self.run(ast)
